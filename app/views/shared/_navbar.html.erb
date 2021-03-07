@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+  <a class="navbar-brand" href="#">
+      <img src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24">
+    </a> 
+    <%= link_to "Home",  root_path, class: 'nav-link active' %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <% if (!student_signed_in? && !tutor_signed_in?)%>
+        <li class="nav-item">
+          <%= link_to "Tutors Login",  tutor_session_path, class: 'nav-link active' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Students Login",  student_session_path, class: 'nav-link active' %>
+        </li>
+        <% end %>
+        <% if (student_signed_in? || tutor_signed_in?)%>
+        <li class="nav-item">
+          <%= link_to "Logout",  destroy_tutor_session_path, class: 'nav-link active', method: 'delete' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Restricted",  restricted_path, class: 'nav-link active' %>
+        </li>
+        <% end %>
+        <% if tutor_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Tutors",  members_path, class: 'nav-link active' %>
+        </li>
+        <% end %>
+        <% if student_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Students",  students_path, class: 'nav-link active' %>
+        </li>
+        <% end %>
+        
+
+      <%# <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> %>
+    </div>
+  </div>
+</nav>
