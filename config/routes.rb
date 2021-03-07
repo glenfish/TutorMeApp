@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :students, :controllers => {:registrations => "student_registrations", :sessions => "student_sessions"}
   
-
+  devise_for :students, :controllers => {:registrations => "student_registrations", :sessions => "student_sessions"}
+  devise_scope :student do
+    get '/student/index', to: 'student#index', as: 'student_root'
+  end
   devise_for :tutors
+  devise_scope :tutor do
+    get 'tutors', to: 'members#index', as: 'tutor_root'
+  end
   root 'home#index'
   # student_root_path 'student#index'
   # tutor_root_path 'tutor#index'
