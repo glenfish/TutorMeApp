@@ -1,1 +1,6 @@
-<h1>Restricted Content - Logged in Tutors & Students Only</h1>
+<% if tutor_signed_in? %>
+    <h1>Browse Students</h1>
+<% end %>
+<% if student_signed_in? %>
+    <h1>Find A Tutor</h1>
+<% end %>
