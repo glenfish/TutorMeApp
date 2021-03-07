@@ -5,10 +5,10 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <% if (!student_signed_in? && !tutor_signed_in?)%>
         <li class="nav-item">
-          <%= link_to "Tutors Login",  tutor_session_path, class: 'nav-link active' %>
+          <%= link_to "Tutor Login",  tutor_session_path, class: 'nav-link active' %>
         </li>
         <li class="nav-item">
-          <%= link_to "Students Login",  student_session_path, class: 'nav-link active' %>
+          <%= link_to "Student Login",  student_session_path, class: 'nav-link active' %>
         </li>
         <% end %>
         <% if student_signed_in? %>
