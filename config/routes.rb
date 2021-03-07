@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :students, skip: :join
+  devise_for :students, :controllers => {:registrations => "student_registrations"}
+  
+
   devise_for :tutors
   root 'home#index'
   # student_root_path 'student#index'
