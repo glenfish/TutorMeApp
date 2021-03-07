@@ -11,22 +11,29 @@
           <%= link_to "Students Login",  student_session_path, class: 'nav-link active' %>
         </li>
         <% end %>
-        <% if (student_signed_in? || tutor_signed_in?)%>
+        <% if student_signed_in? %>
         <li class="nav-item">
-          <%= link_to "Logout",  destroy_tutor_session_path, class: 'nav-link active', method: 'delete' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Restricted",  restricted_path, class: 'nav-link active' %>
+          <%= link_to "Find A Tutor",  restricted_path, class: 'nav-link active' %>
         </li>
         <% end %>
         <% if tutor_signed_in? %>
         <li class="nav-item">
-          <%= link_to "Tutors",  members_path, class: 'nav-link active' %>
+          <%= link_to "Browse Students",  restricted_path, class: 'nav-link active' %>
+        </li>
+        <% end %>
+        <% if tutor_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Tutor Central",  tutors_path, class: 'nav-link active' %>
         </li>
         <% end %>
         <% if student_signed_in? %>
         <li class="nav-item">
-          <%= link_to "Students",  students_path, class: 'nav-link active' %>
+          <%= link_to "Student Central",  students_path, class: 'nav-link active' %>
+        </li>
+        <% end %>
+        <% if (student_signed_in? || tutor_signed_in?)%>
+        <li class="nav-item">
+          <%= link_to "Logout",  destroy_tutor_session_path, class: 'nav-link active', method: 'delete' %>
         </li>
         <% end %>
         
