@@ -1,0 +1,14 @@
+<h1>Search Results</h1>
+<% @tutors.each do |tutor| %>
+        <%= tutor.firstname ? tutor.firstname : 'none' %><br>
+        <%= tutor.lastname %><br>
+        <%= tutor.email %><br>
+        <%= tutor.address_1 %><br>
+        <% if tutor.address_2 != '' && !tutor.address_2.nil? %>
+            <%= tutor.address_2 %><br>
+        <% end %>
+        <%= tutor.postcode %><br>
+        <%= tutor.state %><br>
+        <%= tutor.country %><br><br>
+    <% end %> 
+
