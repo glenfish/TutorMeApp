@@ -2,3 +2,11 @@
 <p>
 Everything Students need to know. Links to other pages.
 </p>
+
+<%= form_with url: search_path, method: :get do |form| %>
+  <%= form.label :email, "Search for a Tutor email address:" %><br>
+  <%= form.text_field :email %><br><br>
+  <%= form.label :country, "Search for a Tutor Country:" %><br>
+  <%= form.text_field :country %><br><br>
+  <%= form.submit "Search" %>
+<% end %>
