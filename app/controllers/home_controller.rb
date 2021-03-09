@@ -3,5 +3,6 @@ class HomeController < ApplicationController
     def index
     end
     def restricted
+        @tutor = Tutor.all
     end
 end
