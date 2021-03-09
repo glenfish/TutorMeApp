@@ -21,6 +21,41 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field">
+    <%= f.label :firstname %><br />
+    <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lastname %><br />
+    <%= f.text_field :lastname, autofocus: true, autocomplete: "lastname" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_1 %><br />
+    <%= f.text_field :address_1, autofocus: true, autocomplete: "address_1" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_2 %><br />
+    <%= f.text_field :address_2, autofocus: true, autocomplete: "address_2" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :postcode %><br />
+    <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.text_field :state, autofocus: true, autocomplete: "state" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :country %><br />
+    <%= f.text_field :country, autofocus: true, autocomplete: "country" %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
