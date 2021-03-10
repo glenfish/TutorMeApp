@@ -13,7 +13,11 @@ Rails.application.routes.draw do
   # tutor_root_path 'tutor#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get 'restricted', to: 'home#restricted', as: 'restricted'
+
+
   get 'tutors', to: 'members#index', as: 'tutors'
+  get '/tutors/profile_form', to: 'members#profile_form', as: 'profile_form'
+
   get 'students', to: 'student#index', as: 'students'
   get 'students/join/', to: 'student#join', as: 'students_join'
   get 'students/search/', to: 'student#search', as: 'search'
