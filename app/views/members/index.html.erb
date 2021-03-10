@@ -1,8 +1,16 @@
 <h1><%=@tutor.firstname%>'s Tutor Central</h1>
 <br>
-<p>
-<h3>Your Profile Title:</h3>
-<%= @profile.title %><br><br>
-<h3>Your Profile Description:</h3>
-<%= @profile.description %><br>
-</p>
+
+<% if @profile %>
+    <p>
+    <h3>Your Profile Title:</h3>
+    <%= @profile.title %><br><br>
+    <h3>Your Profile Description:</h3>
+    <%= @profile.description %><br>
+    </p>
+    <hr>
+    <%= link_to "Update Profile", profile_form_path %>
+<% else %>
+    <h4>You haven't set up your profile yet.</h4>
+    <%= link_to 'Create A Profile', profile_form_path %>
+<% end %>

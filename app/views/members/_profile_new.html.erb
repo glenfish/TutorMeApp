@@ -1,5 +1,5 @@
 
-<%= form_with model: @profile do |form| %>
+<%= form_with url:"/tutors/profile_create", method: :post do |form| %>
   <%= form.text_field :title %><br><br>
   <%= form.text_area :description, size: "60x10" %><br>
   <%= form.submit %>

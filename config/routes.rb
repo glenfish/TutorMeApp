@@ -17,11 +17,13 @@ Rails.application.routes.draw do
 
   get 'tutors', to: 'members#index', as: 'tutors'
   get '/tutors/profile_form', to: 'members#profile_form', as: 'profile_form'
+  post '/tutors/profile_create', to: 'members#profile_create'
+  patch '/tutors/profile', to: 'members#profile', as: 'profile'
 
   get 'students', to: 'student#index', as: 'students'
   get 'students/join/', to: 'student#join', as: 'students_join'
   get 'students/search/', to: 'student#search', as: 'search'
 
   # match '*path' => 'home#index', via: [:get, :post]
-  match "*path", to: redirect('/'), via: :all
+  # match "*path", to: redirect('/'), via: :all
 end
