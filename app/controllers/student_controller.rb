@@ -13,12 +13,11 @@ class StudentController < ApplicationController
         end
         if params[:state] == '' and params[:country] != ''
                 @tutors = Tutor.where('lower(country) LIKE ?', "%#{params[:country].downcase}%")
-        end
-
-
-        
-
-        
-        
+        end     
+    end
+    
+    def tutor_profile
+        @tutor = Tutor.find_by_id(params[:id])
+        @tutor_profile = Profile.find_by(tutor_id: params[:id])
     end
 end

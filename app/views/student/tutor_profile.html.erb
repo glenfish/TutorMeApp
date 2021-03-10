@@ -1,0 +1,10 @@
+<h2><%= @tutor.firstname %> <%= @tutor.lastname %></h2><br>
+<% if @tutor_profile %>
+    <h3><%= @tutor_profile.title %></h3>
+    <p>
+    <%= @tutor_profile.description %>
+    </p>
+<% else %>
+    <p>There is no profile for this Tutor yet</p>
+<% end %>
+<%= link_to "back", request.referer.present? ? request.referer : default_path %>

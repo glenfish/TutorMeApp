@@ -10,7 +10,8 @@
             <% end %>
             <%= tutor.postcode %><br>
             <%= tutor.state.upcase %><br>
-            <%= tutor.country.upcase %><br><br>
+            <%= tutor.country.upcase %><br>
+            <%= link_to 'View Profile', student_tutor_profile_path(tutor) %><br><br>
     <% end %>
 <% else %>
     <h4>Nothing matched your search</h4>
