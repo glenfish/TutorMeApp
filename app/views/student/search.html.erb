@@ -15,5 +15,6 @@
     <% end %>
 <% else %>
     <h4>Nothing matched your search</h4>
+    <%= link_to "back", request.referer.present? ? request.referer : default_path %>
 <% end %>
 
