@@ -11,9 +11,10 @@
           <%= link_to "Student Login",  student_session_path, class: 'nav-link active' %>
         </li>
         <% end %>
-        <% if student_signed_in? %>
+        <% if student_signed_in? %> 
+        <%# currently turned off %>
         <li class="nav-item">
-          <%= link_to "Find A Tutor",  restricted_path, class: 'nav-link active' %>
+          <% link_to "Find A Tutor",  restricted_path, class: 'nav-link active' %>
         </li>
         <% end %>
         <% if tutor_signed_in? %>
