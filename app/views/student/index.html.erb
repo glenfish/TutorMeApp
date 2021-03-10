@@ -1,12 +1,12 @@
-<h1>Student Central</h1>
+<h1><%= current_student.firstname.capitalize %>'s Student Central</h1>
 <p>
-Everything Students need to know. Links to other pages.
+Everything you wanted to know... and some stuff you didn't know you needed to know.
 </p>
 
 <%= form_with url: search_path, method: :get do |form| %>
-  <%= form.label :email, "Search for a Tutor email address:" %><br>
-  <%= form.text_field :email %><br><br>
-  <%= form.label :country, "Search for a Tutor Country:" %><br>
+  <%= form.label :state, "Search for a Tutor in a specific State" %><br>
+  <%= form.text_field :state %><br><br>
+  <%= form.label :country, "Search for a Tutor by Country:" %><br>
   <%= form.text_field :country %><br><br>
   <%= form.submit "Search" %>
 <% end %>
