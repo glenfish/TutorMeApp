@@ -6,9 +6,9 @@ class StudentController < ApplicationController
     def search
         params.permit(:firstname, :lastname, :email, :country, :state)
         if params[:state] != ''
-            @tutors = Tutor.where('lower(state) LIKE ?', params[:state].downcase)
+            @tutors = Tutor.where('lower(state) LIKE ?', "%#{params[:state].downcase}%")
             if params[:country] != ''
-                @tutors = @tutors.where('lower(country) LIKE ?', params[:country].downcase)
+                @tutors = @tutors.where('lower(country) LIKE ?', "%#{params[:country].downcase}%")
             end
         end
         if params[:state] == '' and params[:country] != ''
