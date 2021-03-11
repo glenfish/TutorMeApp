@@ -13,11 +13,13 @@ class MembersController < ApplicationController
     def profile
         if @profile
             @profile.update(title: params[:profile][:title], description: params[:profile][:description])
-            @profile.photo.attach(params[:profile][:photo])
-
+            if params[:profile][:photo]
+                @profile.photo.attach(params[:profile][:photo])
+            end
+        flash.alert = 'Profile updated!'
            
         else
-            flash.now[:alert] = 'Sorry! There was an error saving your profile. Please try again.'
+            flash.alert = 'Sorry! There was an error saving your profile. Please try again.'
         end
         redirect_to tutors_path, status: 301
     end
