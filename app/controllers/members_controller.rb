@@ -23,7 +23,7 @@ class MembersController < ApplicationController
 
     def profile_create
         new_profile = Profile.create(title: params[:title], description: params[:description], tutor_id: @tutor.id)
-        if !params[:profile][:photo].nil?
+        if params[:photo]
             new_profile.photo.attach(params[:photo])
         end
         flash.alert = 'Profile created!'
