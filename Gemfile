@@ -28,6 +28,10 @@ gem 'jbuilder', '~> 2.7'
 # add authentication
 gem 'devise', '~> 4.2'
 
+# add cloudinary gems for image uploading
+gem 'cloudinary'
+gem 'activestorage-cloudinary-service'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
