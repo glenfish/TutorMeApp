@@ -17,18 +17,15 @@ class MembersController < ApplicationController
                 @profile.photo.attach(params[:profile][:photo])
             end
             flash.alert = 'Profile updated!'
-        else
-            flash.alert = 'Sorry! There was an error saving your profile. Please try again.'
         end
         redirect_to tutors_path
     end
 
     def profile_create
-        new_profile = Profile.new(title: params[:title], description: params[:description], tutor_id: @tutor.id)
+        new_profile = Profile.create(title: params[:title], description: params[:description], tutor_id: @tutor.id)
         if params[:profile][:photo]
             new_profile.photo.attach(params[:photo])
         end
-        new_profile.save
         flash.alert = 'Profile created!'
         redirect_to tutors_path
     rescue
