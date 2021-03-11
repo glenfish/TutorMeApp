@@ -9,8 +9,8 @@
     <%= @profile.description %>
     </p>
     <br>
-    <% if @profile.photo.attached? %>
-        <%= image_tag @profile.photo %>
+    <% unless @profile.photo.url.nil? %>
+        <%= cl_image_tag @profile.photo.url, cloud_name: "glenfish" %>
     <% end %>
     <br><br>
     </p>

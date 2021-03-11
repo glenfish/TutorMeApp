@@ -5,7 +5,7 @@
   <%= form.label :description %><br />
   <%= form.text_area :description, size: "60x10", :required => true %><br>
   <% if @profile.photo.attached? %>
-    <%= image_tag @profile.photo %><br>
+    <%= cl_image_tag @profile.photo.url, cloud_name: "glenfish" %><br>
     <%= form.label "Change Photo" %><br />
     <%= form.file_field :photo %><br /><br />
   <% else %>

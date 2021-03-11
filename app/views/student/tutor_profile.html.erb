@@ -2,7 +2,10 @@
 <% if @tutor_profile %>
     <h3><%= @tutor_profile.title %></h3>
     <p>
-    <%= @tutor_profile.description %>
+    <%= @tutor.profile.description %><br><br>
+    <% if @tutor.profile.photo.url %>
+        <%= cl_image_tag @tutor.profile.photo.url, cloud_name: "glenfish" %>
+    <% end %>
     </p>
 <% else %>
     <p>There is no profile for this Tutor yet</p>
