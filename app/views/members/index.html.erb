@@ -10,7 +10,7 @@
     </p>
     <br>
     <% unless @profile.photo.url.nil? %>
-        <%= cl_image_tag @profile.photo.url, cloud_name: "glenfish" %>
+        <%= cl_image_tag @profile.photo.url, cloud_name: $cloud_name %>
     <% end %>
     <br><br>
     </p>

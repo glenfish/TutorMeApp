@@ -4,7 +4,7 @@
     <p>
     <%= @tutor.profile.description %><br><br>
     <% if @tutor.profile.photo.url %>
-        <%= cl_image_tag @tutor.profile.photo.url, cloud_name: "glenfish" %>
+        <%= cl_image_tag @tutor.profile.photo.url, cloud_name: $cloud_name %>
     <% end %>
     </p>
 <% else %>
