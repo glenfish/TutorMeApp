@@ -1,8 +1,10 @@
 
 <%= form_with url:"/tutors/profile_create", method: :post do |form| %>
-  <%= form.label 'Title' %><br />
-  <%= form.text_field :title %><br><br>
-  <%= form.label 'Description' %><br />
-  <%= form.text_area :description, size: "60x10" %><br>
+  <%= form.label :title %><br />
+  <%= form.text_field :title, :required => true %><br><br>
+  <%= form.label :description %><br />
+  <%= form.text_area :description, size: "60x10", :required => true %><br>
+  <%= form.label :photo %><br />
+  <%= form.file_field :photo %><br /><br />
   <%= form.submit "Create My Profile" %>
 <% end %>

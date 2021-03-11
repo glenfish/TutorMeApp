@@ -13,6 +13,9 @@ class MembersController < ApplicationController
     def profile
         if @profile
             @profile.update(title: params[:profile][:title], description: params[:profile][:description])
+            @profile.photo.attach(params[:profile][:photo])
+
+           
         else
             flash.now[:alert] = 'Sorry! There was an error saving your profile. Please try again.'
         end
@@ -20,8 +23,10 @@ class MembersController < ApplicationController
     end
 
     def profile_create
-        new_profile = Profile.create(title: params[:title], description: params[:description], tutor_id: @tutor.id)
+        new_profile = Profile.new(title: params[:title], description: params[:description], tutor_id: @tutor.id)
+        new_profile.photo.attach(params[:photo])
         print "*************** #{new_profile}"
+        new_profile.save
         redirect_to tutors_path, status: 301
         
     end

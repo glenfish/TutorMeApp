@@ -2,14 +2,20 @@
 <br>
 
 <% if @profile %>
+<%= link_to "Update Profile", profile_form_path %>
     <p>
-    <h3>Your Profile Title:</h3>
-    <%= @profile.title %><br><br>
-    <h3>Your Profile Description:</h3>
-    <%= @profile.description %><br>
+    <h3><%= @profile.title %></h3>
+    <p>
+    <%= @profile.description %>
+    </p>
+    <br>
+    <% unless @profile.photo.url.nil? %>
+        <%= cl_image_tag @profile.photo.url, cloud_name: "glenfish" %>
+    <% end %>
+    <br><br>
     </p>
     <hr>
-    <%= link_to "Update Profile", profile_form_path %>
+    
 <% else %>
     <h4>You haven't set up your profile yet.</h4>
     <%= link_to 'Create A Profile', profile_form_path %>
