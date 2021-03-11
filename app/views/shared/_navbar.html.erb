@@ -10,13 +10,12 @@
         <li class="nav-item">
           <%= link_to "Student Login",  student_session_path, class: 'nav-link active' %>
         </li>
-        <% end %>
-        <% if student_signed_in? %> 
-        <%# currently turned off %>
+      <% end %>
+      <% if student_signed_in? %> 
         <li class="nav-item">
-          <% link_to "Find A Tutor",  restricted_path, class: 'nav-link active' %>
+          <%= link_to "My Favourite Tutors",  restricted_path, class: 'nav-link active' %>
         </li>
-        <% end %>
+      <% end %>
         <% if tutor_signed_in? %>
         <li class="nav-item">
           <%= link_to "Browse Students",  restricted_path, class: 'nav-link active' %>
@@ -29,7 +28,7 @@
         <% end %>
         <% if student_signed_in? %>
         <li class="nav-item">
-          <%= link_to "Student Central",  students_path, class: 'nav-link active' %>
+          <%= link_to "Tutor Search",  students_path, class: 'nav-link active' %>
         </li>
         <% end %>
         <% if (student_signed_in? || tutor_signed_in?)%>

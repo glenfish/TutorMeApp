@@ -10,4 +10,9 @@
 <% else %>
     <p>There is no profile for this Tutor yet</p>
 <% end %>
+<% if !@exists %>
+    <%= link_to "add to favourites", favourite_path(@tutor.id) %> | 
+<% else %>
+    <%= link_to "remove from favourites", :controller => "student", :action => "favourite", :id => @tutor.id, :remove => true %> | 
+<% end %>
 <%= link_to "back", request.referer.present? ? request.referer : default_path %>

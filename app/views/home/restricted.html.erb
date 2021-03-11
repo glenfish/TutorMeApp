@@ -2,17 +2,24 @@
     <h1>All Tutors</h1>
 <% end %>
 <% if student_signed_in? %>
-    <h1>Find A Tutor</h1>
+    <h1>My Favourite Tutors</h1>
 <% end %>
-<% @tutor.each do |tutor| %>
-    <%= tutor.firstname ? tutor.firstname.capitalize : 'none' %><br>
-    <%= tutor.lastname.capitalize %><br>
-    <%= tutor.email.downcase %><br>
-    <%= tutor.address_1.capitalize %><br>
-    <% if tutor.address_2 != '' && !tutor.address_2.nil? %>
-        <%= tutor.address_2.capitalize %><br>
+<% if @tutor != [] %>
+    <% @tutor.each do |tutor| %>
+        <%= tutor.firstname ? tutor.firstname.capitalize : 'none' %><br>
+        <%= tutor.lastname.capitalize %><br>
+        <%= tutor.email.downcase %><br>
+        <%= tutor.address_1.capitalize %><br>
+        <% if tutor.address_2 != '' && !tutor.address_2.nil? %>
+            <%= tutor.address_2.capitalize %><br>
+        <% end %>
+        <%= tutor.postcode %><br>
+        <%= tutor.state.upcase %><br>
+        <%= tutor.country.upcase %><br>
+        <%= link_to 'View Profile', student_tutor_profile_path(tutor) %><br><br>
     <% end %>
-    <%= tutor.postcode %><br>
-    <%= tutor.state.upcase %><br>
-    <%= tutor.country.upcase %><br><br>
+<% else %>
+    <h4>You currently have no favourites selected</h4>
+    <br>
+    <%= link_to "back", request.referer.present? ? request.referer : default_path %>
 <% end %>

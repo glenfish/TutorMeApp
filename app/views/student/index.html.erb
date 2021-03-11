@@ -1,6 +1,7 @@
-<h1><%= current_student.firstname.capitalize %>'s Student Central</h1>
+<h1>Tutor Search</h1>
 <p>
-Find your perfect Tutor! Enter any combination of search critera:
+<h4><%= current_student.firstname.capitalize %>, find your perfect Tutor!</h4>
+Enter any combination of search critera below:
 </p>
 
 <%= form_with url: search_path, method: :get do |form| %>

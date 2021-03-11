@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_015931) do
+ActiveRecord::Schema.define(version: 2021_03_11_094304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(version: 2021_03_11_015931) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "favourites", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "tutor_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_id"], name: "index_favourites_on_student_id"
+    t.index ["tutor_id"], name: "index_favourites_on_tutor_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -90,5 +99,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_015931) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "favourites", "students"
+  add_foreign_key "favourites", "tutors"
   add_foreign_key "profiles", "tutors"
 end

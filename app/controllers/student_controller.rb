@@ -1,5 +1,6 @@
 class StudentController < ApplicationController
     before_action :authenticate_student!
+    
     def index
         # @tutor = Tutor.first
     end
@@ -19,5 +20,25 @@ class StudentController < ApplicationController
     def tutor_profile
         @tutor = Tutor.find_by_id(params[:id])
         @tutor_profile = Profile.find_by(tutor_id: params[:id])
+        @exists = current_student.favourites.find_by(tutor_id: params[:id])
+    end
+
+    def favourite
+        params.permit(:id, :remove)
+        exists = current_student.favourites.find_by(tutor_id: params[:id])
+        remove = params[:remove]
+        if exists and remove
+            record = current_student.favourites.find_by_tutor_id(params[:id])
+            record.destroy
+            flash[:alert] = "Tutor has been removed"
+        elsif
+            flash[:alert] = "Tutor is already in your favourites"
+        end
+        
+        if !exists
+            current_student.favourites.create(tutor_id: params[:id])
+            flash[:alert] = "You have added the tutor to your favourites!"
+        end
+        redirect_to request.referer
     end
 end
