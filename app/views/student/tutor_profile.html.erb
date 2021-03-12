@@ -6,6 +6,16 @@
     <% if @tutor.profile.photo.url %>
         <%= cl_image_tag @tutor.profile.photo.url, cloud_name: $cloud_name %>
     <% end %>
+    <% if @subjects.first %>
+        <h4>Subjects taught</h4>
+        <% @subjects.each do |subject| %>
+        <%= subject.title.upcase %><br>
+        Hours available: <%= subject.time %>  <br><br>
+        <% end %>
+    <% else %>
+        <h4><%= @tutor.firstname %> is not actively tutoring at this time</h4>
+        <p>This could be because there are no available tutoring time available for the month.</p>
+    <% end %>
     </p>
 <% else %>
     <p>There is no profile for this Tutor yet</p>

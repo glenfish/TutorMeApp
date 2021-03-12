@@ -34,3 +34,12 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+Icon
+.sync/ID
+.sync/IgnoreList
+.gitignore
+.gitignore
+.sync/StreamsList
+.sync/root_acl_entry
+Icon
+Icon

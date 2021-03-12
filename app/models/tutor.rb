@@ -6,4 +6,5 @@ class Tutor < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :favourites
+  has_many :subjects
 end
