@@ -14,7 +14,7 @@
         <% end %>
     <% else %>
         <h4><%= @tutor.firstname %> is not actively tutoring at this time</h4>
-        <p>This could be because there are no available tutoring time available for the month.</p>
+        <p>This could be because there are no available tutoring hours left available for this month. Please check back with <%= @tutor.firstname.capitalize %> soon, or send him a message!</p>
     <% end %>
     </p>
 <% else %>
