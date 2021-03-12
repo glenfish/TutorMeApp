@@ -30,6 +30,12 @@ class StudentController < ApplicationController
                 subject_hours_match = tutor_join_subject_match.where("time > ?", 0)
                 @tutors = subject_hours_match
             end
+            if params[:state] != ''
+                @tutors = @tutors.where('lower(state) LIKE ?', "%#{params[:state].downcase}%")
+            end
+            if params[:country] != ''
+                @tutors = @tutors.where('lower(country) LIKE ?', "%#{params[:country].downcase}%")
+            end
         else
             case
             when params[:firstname] != '', params[:lastname] == ''
