@@ -7,6 +7,8 @@ Enter any combination of search critera below:
 <%= form_with url: search_path, method: :get do |form| %>
   <%= form.label :subject %><br>
   <%= form.text_field :subject %><br>
+  <%= form.check_box :available %>
+  <%= form.label "Available for bookings" %><br><br>
   <%= form.label :country %><br>
   <%= form.text_field :country %><br>
   <%= form.label :state %><br>

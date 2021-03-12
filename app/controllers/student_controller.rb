@@ -2,20 +2,17 @@ class StudentController < ApplicationController
     before_action :authenticate_student!
     
     def index
-        # @tutor = Tutor.first
+        
     end
     def search
-        params.permit(:firstname, :lastname, :country, :state, :subject)
+        params.permit(:firstname, :lastname, :country, :state, :subject, :available)
         if params[:subject] != ''
-            subject_records = Subject.where('lower(title) LIKE ?', "%#{params[:subject].downcase}%")
-            print "Search ********************** #{subject_records.inspect}"
-            subject_records.each do |record|
-                @tutors = Tutor.where(id: record.tutor_id)
+            tutor_join_subject_match = Tutor.joins(:subjects).where('lower(title) LIKE ?', "%#{params[:subject].downcase}%")
+            @tutors = tutor_join_subject_match
+            if params[:available] == '1'
+                subject_hours_match = tutor_join_subject_match.where("time > ?", 0)
+                @tutors = subject_hours_match
             end
-
-            
-
-
         else
             case
             when params[:firstname] != '', params[:lastname] == ''
