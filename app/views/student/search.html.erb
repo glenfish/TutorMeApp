@@ -1,13 +1,11 @@
 <h1>Search Results</h1>
 <% if @tutors != [] and !@tutors.nil? %>
     <% @tutors.each do |tutor| %>
-            <%= tutor.firstname ? tutor.firstname.capitalize : 'none' %><br>
+            Name:
+            <%= tutor.firstname ? tutor.firstname.capitalize : 'none' %>
             <%= tutor.lastname.capitalize %><br>
-            <%= tutor.email.downcase %><br>
-            <%= tutor.address_1.capitalize %><br>
-            <% if tutor.address_2 != '' && !tutor.address_2.nil? %>
-                <%= tutor.address_2.capitalize %><br>
-            <% end %>
+            Email: 
+            <%= tutor.email.downcase.sub(/\A(.)(.*)(...)\z/) {|m| $1 + ("*" * $2.length) + $3 } %><br>
             <%= tutor.postcode %><br>
             <%= tutor.state.upcase %><br>
             <%= tutor.country.upcase %><br>

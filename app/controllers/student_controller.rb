@@ -2,6 +2,7 @@ class StudentController < ApplicationController
     before_action :authenticate_student!
     
     def index
+        # format select data for search form
         country_codes = []
         state_codes = []
         subjects = []
