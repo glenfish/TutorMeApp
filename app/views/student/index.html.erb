@@ -5,9 +5,15 @@ Enter any combination of search critera below:
 </p>
 
 <%= form_with url: search_path, method: :get do |form| %>
-  <%= form.label :country, "Country:" %><br>
+  <%= form.label :subject %><br>
+  <%= form.text_field :subject %><br>
+  <%= form.label :country %><br>
   <%= form.text_field :country %><br>
-  <%= form.label :state, "State" %><br>
-  <%= form.text_field :state %><br><br>
+  <%= form.label :state %><br>
+  <%= form.text_field :state %><br>
+  <%= form.label "First Name" %><br>
+  <%= form.text_field :firstname %><br>
+  <%= form.label "Last Name" %><br>
+  <%= form.text_field :lastname %><br><br>
   <%= form.submit "Find A Tutor" %>
 <% end %>

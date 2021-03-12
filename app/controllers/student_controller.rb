@@ -5,20 +5,52 @@ class StudentController < ApplicationController
         # @tutor = Tutor.first
     end
     def search
-        params.permit(:firstname, :lastname, :email, :country, :state)
-        if params[:state] != ''
-            @tutors = Tutor.where('lower(state) LIKE ?', "%#{params[:state].downcase}%")
-            if params[:country] != ''
-                @tutors = @tutors.where('lower(country) LIKE ?', "%#{params[:country].downcase}%")
+        params.permit(:firstname, :lastname, :country, :state, :subject)
+        if params[:subject] != ''
+            subject_records = Subject.where('lower(title) LIKE ?', "%#{params[:subject].downcase}%")
+            print "Search ********************** #{subject_records.inspect}"
+            subject_records.each do |record|
+                @tutors = Tutor.where(id: record.tutor_id)
             end
-        end
-        if params[:state] == '' and params[:country] != ''
-                @tutors = Tutor.where('lower(country) LIKE ?', "%#{params[:country].downcase}%")
+
+            
+
+
+        else
+            case
+            when params[:firstname] != '', params[:lastname] == ''
+                @tutors = Tutor.where('lower(firstname) LIKE ?', "%#{params[:firstname].downcase}%")
+                if params[:state] != ''
+                    @tutors = @tutors.where('lower(state) LIKE ?', "%#{params[:state].downcase}%")
+                end
+                if params[:country] != ''
+                    @tutors = @tutors.where('lower(country) LIKE ?', "%#{params[:country].downcase}%")
+                end
+            when params[:firstname] != '', params[:lastname] != ''
+                @tutors = Tutor.where('lower(firstname) LIKE ?', "%#{params[:firstname].downcase}%")
+                @tutors = @tutors.where('lower(lastname) LIKE ?', "%#{params[:lastname].downcase}%")
+            when params[:firstname] == '', params[:lastname] != ''
+                @tutors = Tutor.where('lower(lastname) LIKE ?', "%#{params[:lastname].downcase}%")
+                if params[:state] != ''
+                    @tutors = @tutors.where('lower(state) LIKE ?', "%#{params[:state].downcase}%")
+                end
+                if params[:country] != ''
+                    @tutors = @tutors.where('lower(country) LIKE ?', "%#{params[:country].downcase}%")
+                end
+            else
+                case
+                when params[:state] != '', params[:country] == ''
+                    @tutors = Tutor.where('lower(state) LIKE ?', "%#{params[:state].downcase}%")
+                when params[:state] == '', params[:country] != ''
+                    @tutors = Tutor.where('lower(country) LIKE ?', "%#{params[:country].downcase}%")
+                else
+                    @tutors = Tutor.where('lower(state) LIKE ?', "%#{params[:state].downcase}%")
+                    @tutors = @tutors.where('lower(country) LIKE ?', "%#{params[:country].downcase}%") 
+                end 
+            end
         end
     end
 
-    
-    
     def tutor_profile
         @tutor = Tutor.find_by_id(params[:id])
         @tutor_profile = Profile.find_by(tutor_id: params[:id])
