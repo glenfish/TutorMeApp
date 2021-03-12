@@ -1,4 +1,4 @@
-<h1><%=@tutor.firstname%>'s Tutor Central</h1>
+<h1><%=@tutor.firstname%>'s Profile</h1>
 <br>
 
 <% if @profile %>
@@ -13,6 +13,17 @@
         <%= cl_image_tag @profile.photo.url, cloud_name: $cloud_name %>
     <% end %>
     <br><br>
+    <% if @subjects.first %>
+        <h4>Subjects taught</h4>
+        <% @subjects.each do |subject| %>
+        <%= subject.title.upcase %><br>
+        Hours available: <%= subject.time %>  <br><br>
+        <% end %>
+        <%= link_to "Edit subjects or hours", restricted_path%>
+    <% else %>
+        <h4>You are currently teaching no subjects</h4>
+        <p>Click the link below to add a subject and the amount of hours this month you wish to teach.</p>
+    <% end %>
     </p>
     <hr>
     

@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
         if (:authenticate_student! || :authenticate_tutor!)
             authenticated = true
         end
+
+        if tutor_signed_in?
+            @tutor = Tutor.find_by_id(current_tutor)
+            @profile = @tutor.profile
+            @subjects = @tutor.subjects.all
+        end
         return authenticated
     end
 

@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get '/tutors/profile_form', to: 'members#profile_form', as: 'profile_form'
   post '/tutors/profile_create', to: 'members#profile_create'
   patch '/tutors/profile', to: 'members#profile', as: 'profile'
+  patch '/tutors/update_subjects', to: 'members#update_subjects', as: 'update_subjects'
+  post '/tutors/create_subjects', to: 'members#create_subjects', as: 'create_subjects'
+  delete '/tutors/destroy_subject', to: 'members#destroy_subject', as: 'destroy_subject'
 
   get 'students', to: 'student#index', as: 'students'
   get 'students/join/', to: 'student#join', as: 'students_join'

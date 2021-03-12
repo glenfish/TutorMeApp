@@ -11,7 +11,13 @@
             <%= tutor.postcode %><br>
             <%= tutor.state.upcase %><br>
             <%= tutor.country.upcase %><br>
-            <%= link_to 'View Profile', student_tutor_profile_path(tutor) %><br><br>
+            <%= link_to 'View Profile', student_tutor_profile_path(tutor) %><br>
+            <% if is_favourited(tutor.id) %>
+                <%= link_to "remove from favourites", :controller => "student", :action => "favourite", :id => tutor.id, :remove => true %>
+            <% else %>
+                <%= link_to "add to favourites", favourite_path(tutor.id) %>
+            <% end %>
+            <br><br>
     <% end %>
 <% else %>
     <h4>Nothing matched your search</h4>

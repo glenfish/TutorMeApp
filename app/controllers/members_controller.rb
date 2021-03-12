@@ -31,11 +31,42 @@ class MembersController < ApplicationController
         
     end
 
+    def create_subjects
+        # params.permit(:title, :time)
+        title = params[:title].downcase
+        time = params[:time]
+        new_subject = Subject.new(title: title, time: time, tutor: @tutor)
+        print "Your New Subject ************* #{new_subject.inspect}"
+        new_subject.save
+        flash.alert = 'Your new subject has been added!'
+        redirect_to restricted_path
+    end
+
+    def update_subjects
+        # params.permit(:title, :time, :id)
+        title = params[:title].downcase
+        time = params[:time]
+        subject_id = params[:id]
+        subject_record = Subject.where(id: subject_id)
+        print "The subject record is #{subject_record}"
+        subject_record.update(title: title, time: time)
+        flash.alert = 'Your subjects have been updated!'
+        redirect_to restricted_path
+    end
+
+    def destroy_subject
+        Subject.destroy(params[:id])
+        redirect_to restricted_path
+    end
+
     private
 
     def get_tutor_and_profile
     @tutor = Tutor.find_by_id(current_tutor)
     @profile = @tutor.profile
+    @subjects = @tutor.subjects.all
     end
+
+
 
 end
