@@ -5,7 +5,7 @@
         <%= form.label "Subject" %><br>
         <%= form.text_field :title, value: subject.title, :required => true  %><br>
         <%= form.label "Hours offered this month" %><br>
-        <%= form.text_field :time, value: subject.time, :required => true  %><br>
+        <%= form.number_field :time, value: subject.time, :required => true  %><br>
         <%= form.submit %>
         <%= link_to "delete", destroy_subject_path(id: subject.id), method: :delete %>
         <% end %><br>
