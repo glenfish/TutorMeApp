@@ -4,22 +4,21 @@
     
 <% end %>
 <% if student_signed_in? %>
-    <h1>My Favourite Tutors</h1>
+    <h2>My Favourite Tutors</h2>
 
     <% if @tutors != [] %>
         <% @tutors.each do |tutor| %>
+            <% if tutor.profile.photo.url %>
+                <%= cl_image_tag tutor.profile.photo.url , :width => 130, :crop => "pad", cloud_name: $cloud_name %>
+            <% end %><br>
             <%= tutor.firstname ? tutor.firstname.capitalize : 'none' %><br>
             <%= tutor.lastname.capitalize %><br>
-            <%= tutor.email.downcase %><br>
-            <%= tutor.address_1.capitalize %><br>
-            <% if tutor.address_2 != '' && !tutor.address_2.nil? %>
-                <%= tutor.address_2.capitalize %><br>
-            <% end %>
-            <%= tutor.postcode %><br>
+            <%= tutor.email.downcase.sub(/\A(.)(.*)(...)\z/) {|m| $1 + ("*" * $2.length) + $3 } %><br>
             <%= tutor.state.upcase %><br>
             <%= tutor.country.upcase %><br>
             <%= link_to 'View Profile', student_tutor_profile_path(tutor) %><br>
             <%= link_to "remove from favourites", :controller => "student", :action => "favourite", :id => tutor.id, :remove => true %><br><br>
+            <hr>
         <% end %>
     <% else %>
         <h4>You currently have no favourites selected</h4>
