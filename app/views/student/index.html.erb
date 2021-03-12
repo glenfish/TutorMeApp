@@ -5,14 +5,24 @@ Enter any combination of search critera below:
 </p>
 
 <%= form_with url: search_path, method: :get do |form| %>
+
+
   <%= form.label :subject %><br>
-  <%= form.text_field :subject %><br>
+  <%= form.select :subject, @subjects, selected: "" %><br>
+
   <%= form.check_box :available %>
-  <%= form.label "search only for tutors with available hours" %><br><br>
+  <%= form.label "search only for tutors with available hours" %><br>
+<hr>
+  <h5>Optional search paramaters</h5>
   <%= form.label :country %><br>
-  <%= form.text_field :country %><br>
+  <%= form.select :country, @country_codes , selected: "" %><br>
+
   <%= form.label :state %><br>
-  <%= form.text_field :state %><br>
+  <%= form.select :state, @state_codes, selected: "" %><br>
+
+
+
+
   <%= form.label "First Name" %><br>
   <%= form.text_field :firstname %><br>
   <%= form.label "Last Name" %><br>

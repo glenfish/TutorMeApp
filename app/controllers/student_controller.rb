@@ -2,7 +2,23 @@ class StudentController < ApplicationController
     before_action :authenticate_student!
     
     def index
-        
+        country_codes = []
+        state_codes = []
+        subjects = []
+        Tutor.all.each do |tutor|
+            country_codes << [tutor.country.upcase,tutor.country.upcase]
+            state_codes << [tutor.state.upcase,tutor.state.upcase]
+        end
+        Subject.all.each do |subject_name|
+            subjects << [subject_name.title.downcase,subject_name.title.downcase]
+        end
+        @country_codes = country_codes.uniq
+        @country_codes.unshift(["", ""])
+        @state_codes = state_codes.uniq
+        @state_codes.unshift(["", ""])
+        @subjects = subjects.uniq
+        @subjects.unshift(["", ""])
+        print "*************#{@country_codes}"
     end
     def search
         params.permit(:firstname, :lastname, :country, :state, :subject, :available)
