@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get 'tutors', to: 'members#index', as: 'tutors'
   get '/tutors/profile_form', to: 'members#profile_form', as: 'profile_form'
+  get '/tutors/bookings/', to: 'members#bookings', as: 'tutor_bookings'
   post '/tutors/profile_create', to: 'members#profile_create'
   patch '/tutors/profile', to: 'members#profile', as: 'profile'
   patch '/tutors/update_subjects', to: 'members#update_subjects', as: 'update_subjects'
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
   get 'students/tutor_profile/:id', to: 'student#tutor_profile', as: 'student_tutor_profile'
   get 'students/favourite/:id', to: 'student#favourite', as: 'favourite'
   get 'students/make_booking/', to: 'student#make_booking', as: 'make_booking'
+  get 'students/bookings/', to: 'student#bookings', as: 'student_bookings'
   # match '*path' => 'home#index', via: [:get, :post]
   # match "*path", to: redirect('/'), via: :all
 end

@@ -1,0 +1,13 @@
+<h1>Bookings</h1>
+<% if @bookings.exists? %>
+    <% booking_array = [] %>
+    <% @bookings.each do |booking| %>
+        <% booking_array = get_booking_info(booking) %>
+        <% booking_array.each do |booking_display_record| %>
+        <%= booking_display_record %><br>
+        <% end %><br><hr><br>
+    <% end %>
+    
+<% else %>
+        <p>You have made no bookings yet.</p>
+<% end %>

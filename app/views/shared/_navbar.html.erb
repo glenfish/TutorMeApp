@@ -13,12 +13,18 @@
       <% end %>
       <% if student_signed_in? %> 
         <li class="nav-item">
-          <%= link_to "My Favourite Tutors",  restricted_path, class: 'nav-link active' %>
+          <%= link_to "Favourite Tutors",  restricted_path, class: 'nav-link active' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Bookings",  student_bookings_path, class: 'nav-link active' %>
         </li>
       <% end %>
         <% if tutor_signed_in? %>
         <li class="nav-item">
           <%= link_to "My Subjects",  restricted_path, class: 'nav-link active' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Bookings",  tutor_bookings_path, class: 'nav-link active' %>
         </li>
         <% end %>
         <% if tutor_signed_in? %>

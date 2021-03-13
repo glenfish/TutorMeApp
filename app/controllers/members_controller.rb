@@ -59,6 +59,11 @@ class MembersController < ApplicationController
         redirect_to restricted_path
     end
 
+    def bookings
+        # action: show bookings
+        @bookings = current_tutor.bookings.all
+    end
+
     private
 
     def get_tutor_and_profile

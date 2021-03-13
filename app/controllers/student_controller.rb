@@ -97,6 +97,7 @@ class StudentController < ApplicationController
         redirect_to request.referer
     end
     def make_booking
+        # action: make a booking and a payment and update the hours for the tutor's subject
         params.permit(:subject, :tutor)
         # create the booking using hard coded 1 hour time
         subject = Subject.find(params[:subject].to_i)
@@ -116,5 +117,10 @@ class StudentController < ApplicationController
             flash[:alert] = "Sorry there is no time avaiable for that subject!"
             redirect_to request.referer
         end
+    end
+
+    def bookings
+        # action: show bookings
+        @bookings = current_student.bookings.all
     end
 end
