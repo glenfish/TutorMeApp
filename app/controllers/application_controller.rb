@@ -13,6 +13,9 @@ class ApplicationController < ActionController::Base
             @profile = @tutor.profile
             @subjects = @tutor.subjects.all
         end
+        
+
+
         return authenticated
     end
 
@@ -20,6 +23,7 @@ class ApplicationController < ActionController::Base
 
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :firstname, :lastname, :address_1, :address_2, :postcode, :state, :country])
+      
     end
 
 end

@@ -1,0 +1,18 @@
+<h4>You are about to purchase 1 hour of tutoring time</h4>
+<p>Tutor name: <%= @tutor_fullname %><br>
+Subject: <%= @subject_title.capitalize %><br>
+Price: $60.00
+</p>
+
+<button data-stripe="payment">Go To Checkout</button><br><br>
+<small>After clicking the button you will be redirected to Stripe to complete payment</small>
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+	document.querySelector("[data-stripe='payment']").addEventListener("click", () => {
+		const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+		stripe.redirectToCheckout({
+			sessionId: "<%= @session_id %>"
+		});
+	});
+</script>

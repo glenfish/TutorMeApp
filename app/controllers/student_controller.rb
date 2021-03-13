@@ -1,8 +1,10 @@
 class StudentController < ApplicationController
-    before_action :authenticate_student!
+    skip_before_action :verify_authenticity_token, only: [:make_booking]
+    before_action :authenticate_student!, except: [:make_booking]
     
+
     def index
-        # format select data for search form
+        @@student_id = Student.find(current_student.id).id
         country_codes = []
         state_codes = []
         subjects = []
@@ -97,13 +99,18 @@ class StudentController < ApplicationController
         redirect_to request.referer
     end
     def make_booking
+        tx_id = params[:data][:object][:id]
+        subject_id = params[:data][:object][:charges][:data][0][:metadata][:subject_id].to_i
+        tutor_id = params[:data][:object][:charges][:data][0][:metadata][:tutor_id].to_i
+        subject = Subject.find(subject_id)
+        student = Student.find(@@student_id)
+
         # action: make a booking and a payment and update the hours for the tutor's subject
-        params.permit(:subject, :tutor)
-        # create the booking using hard coded 1 hour time
-        subject = Subject.find(params[:subject].to_i)
+
         if subject.time > 0
-            booking = current_student.bookings.create(tutor_id: params[:tutor], time: 1, subject_id: params[:subject])
+            booking = student.bookings.create(tutor_id: tutor_id, time: 1, subject_id: subject_id)
             print "************** Booking ID: #{booking.id}"
+
             # create the payment using hard coded amount of $60 per hour
             payment = Payment.create(amount: 60, booking_id: booking.id)
             print "************** Payment ID: #{payment.id}"
@@ -111,16 +118,76 @@ class StudentController < ApplicationController
             
             new_subject_hours = subject.time - 1
             subject.update(time: new_subject_hours)
-            flash[:alert] = "You just made a booking!"
-            redirect_to request.referer
+            # flash[:alert] = "You just made a booking!"
+            # redirect_to request.referer
         else
-            flash[:alert] = "Sorry there is no time avaiable for that subject!"
-            redirect_to request.referer
+            # flash[:alert] = "Sorry there is no time avaiable for that subject!"
+            # redirect_to root_url
+            print "ALERT*************************************FAILED!!!!!"
         end
+
     end
+
+    def test_make_booking
+        print "&&&&&&&&&&& #{params}"
+        
+        
+        tx_id = params[:data][:object][:id]
+        subject_id = params[:data][:object][:charges][:data][0][:metadata][:subject_id].to_i
+        tutor_id = params[:data][:object][:charges][:data][0][:metadata][:tutor_id].to_i
+        student_id = params[:data][:object][:charges][:data][0][:metadata][:student_id].to_i
+        puts "TX: ******* #{tx_id}"
+        puts "Subject: ******* #{subject_id}"
+        render plain: 'ok'
+    end
+
+    def booking_page
+        params.permit(:subject, :tutor)
+        tutor_id = params[:tutor].to_i
+        subject_id = params[:subject].to_i
+        subject = Subject.find(subject_id)
+        tutor = Tutor.find(tutor_id)
+        student_id = current_student.id
+        @tutor_fullname = tutor.firstname + ' ' + tutor.lastname
+        description = "1 hour of professional tutoring with " + @tutor_fullname
+        name = "Subject: " + subject.title.capitalize
+        @subject_title = subject.title
+        session = Stripe::Checkout::Session.create(
+            payment_method_types: ['card'],
+            customer_email: 'graycode+stripe@protonmail.com',
+            line_items: [{
+                name: name,
+                description: description,
+                images: ['https://res.cloudinary.com/glenfish/image/upload/sr2xeymu1glcpl6bv8w7v7e411js.png'],
+                amount: 6000,
+                currency: 'aud',
+                quantity: 1,
+            }],
+            payment_intent_data: {
+                metadata: {
+                    subject: @subject_title,
+                    tutor: @tutor_fullname,
+                    subject_id: subject_id,
+                    tutor_id: tutor_id,
+                    student_id: student_id,
+                }
+            },
+            success_url: "#{root_url}students/success",
+            cancel_url: "#{root_url}students"
+        )
+        @session_id = session.id
+        
+
+    end
+
+    def success
+
+    end
+
 
     def bookings
         # action: show bookings
         @bookings = current_student.bookings.all
     end
 end
+

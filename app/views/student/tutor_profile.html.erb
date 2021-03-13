@@ -12,7 +12,7 @@
         <h4>Subjects taught</h4>
         <% @subjects.each do |subject| %>
         <%= subject.title.upcase %><br>
-        Hours available: <%= subject.time %> | <%= link_to 'book time', make_booking_path(subject: subject.id, tutor: @tutor.id) %>  <br><br>
+        Hours available: <%= subject.time %> | <%= link_to 'book time', booking_page_path(subject: subject.id, tutor: @tutor.id) %>  <br><br>
         <% end %>
     <% else %>
         <h4><%= @tutor.firstname %> is not actively tutoring at this time</h4>
