@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'students/search/', to: 'student#search', as: 'search'
   get 'students/tutor_profile/:id', to: 'student#tutor_profile', as: 'student_tutor_profile'
   get 'students/favourite/:id', to: 'student#favourite', as: 'favourite'
+  get 'students/make_booking/', to: 'student#make_booking', as: 'make_booking'
   # match '*path' => 'home#index', via: [:get, :post]
   # match "*path", to: redirect('/'), via: :all
 end

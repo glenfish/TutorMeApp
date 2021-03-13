@@ -96,4 +96,25 @@ class StudentController < ApplicationController
         end
         redirect_to request.referer
     end
+    def make_booking
+        params.permit(:subject, :tutor)
+        # create the booking using hard coded 1 hour time
+        subject = Subject.find(params[:subject].to_i)
+        if subject.time > 0
+            booking = current_student.bookings.create(tutor_id: params[:tutor], time: 1, subject_id: params[:subject])
+            print "************** Booking ID: #{booking.id}"
+            # create the payment using hard coded amount of $60 per hour
+            payment = Payment.create(amount: 60, booking_id: booking.id)
+            print "************** Payment ID: #{payment.id}"
+            # Decrement the number of hours for the tutor's subject
+            
+            new_subject_hours = subject.time - 1
+            subject.update(time: new_subject_hours)
+            flash[:alert] = "You just made a booking!"
+            redirect_to request.referer
+        else
+            flash[:alert] = "Sorry there is no time avaiable for that subject!"
+            redirect_to request.referer
+        end
+    end
 end
