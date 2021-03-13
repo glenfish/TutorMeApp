@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time: 1
+  tutor: one
+  student: one
+  subject: one
+
+two:
+  time: 1
+  tutor: two
+  student: two
+  subject: two
