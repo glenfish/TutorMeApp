@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  amount: 9.99
+  amount: 1
   booking: one
 
 two:
-  amount: 9.99
+  amount: 1
   booking: two
