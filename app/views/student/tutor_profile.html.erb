@@ -1,23 +1,31 @@
 <h2><%= @tutor.firstname %> <%= @tutor.lastname %></h2><br>
 <% if @tutor_profile %>
+    <% if @tutor.profile.photo.url %>
+        <%= cl_image_tag @tutor.profile.photo.url, class: 'profile_image_main', cloud_name: $cloud_name %>
+    <% end %>
     <h3><%= @tutor_profile.title %></h3>
     <p>
     <%= @tutor.profile.description %><br><br>
-    <% if @tutor.profile.photo.url %>
-        <%= cl_image_tag @tutor.profile.photo.url, cloud_name: $cloud_name %>
-    <% end %>
+    
     <h6>State: <%= @tutor.state.upcase%></h6>
-    <h6>Country: <%= @tutor.country.upcase%></h6>
+    <h6>Country: <%= @tutor.country.upcase%></h6><br>
     <% if @subjects.first %>
         <h4>Subjects taught</h4>
         <% @subjects.each do |subject| %>
-        <%= subject.title.upcase %><br>
-        Hours available: <%= subject.time %> | <%= link_to 'book time', booking_page_path(subject: subject.id, tutor: @tutor.id) %>  <br><br>
+        <% subject.time > 0 ? time_available = true : time_available = false %>
+        <strong><%= subject.title.upcase %></strong><br>
+        Hours available: <%= subject.time %>
+        <% if time_available %>
+            
+            <%= button_to "Book Time", booking_page_path, method: :get, params: { subject: subject.id, tutor: @tutor.id } %><br><br>
+            
+        <% else %>
+            <br><br>
+        <% end %>
         <% end %>
     <% else %>
-        <h4><%= @tutor.firstname %> is not actively tutoring at this time</h4>
-        <p>This could be because there are no available tutoring hours left available for this month. Please check back with <%= @tutor.firstname.capitalize %> soon, or send him a message!</p>
-    <% end %>
+        <br><h4><%= @tutor.firstname %> is not actively tutoring at this time</h4>
+        <% end %>
     </p>
 <% else %>
     <p>There is no profile for this Tutor yet</p>
@@ -28,3 +36,4 @@
     <%= link_to "remove from favourites", :controller => "student", :action => "favourite", :id => @tutor.id, :remove => true %> | 
 <% end %>
 <%= link_to "back", request.referer.present? ? request.referer : default_path %>
+<br><br>
