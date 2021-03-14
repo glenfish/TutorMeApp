@@ -6,9 +6,15 @@
             <%= tutor.lastname.capitalize %><br>
             Email: 
             <%= tutor.email.downcase.sub(/\A(.)(.*)(...)\z/) {|m| $1 + ("*" * $2.length) + $3 } %><br>
-            <%= tutor.postcode %><br>
-            <%= tutor.state.upcase %><br>
-            <%= tutor.country.upcase %><br>
+            <% if tutor.postcode != '' %>
+                <%= tutor.postcode %><br>
+            <% end %>
+            <% if tutor.state.upcase != '' %>
+                <%= tutor.state.upcase %><br>
+            <% end %>
+            <% if tutor.country.upcase != '' %>
+                <%= tutor.country.upcase %><br>
+            <% end %>
             <%= link_to 'View Profile', student_tutor_profile_path(tutor) %><br>
             <% if is_favourited(tutor.id) %>
                 <%= link_to "remove from favourites", :controller => "student", :action => "favourite", :id => tutor.id, :remove => true %>
