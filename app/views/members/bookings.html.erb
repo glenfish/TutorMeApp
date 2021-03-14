@@ -3,7 +3,7 @@
     <% booking_array = [] %>
     <% total_earned = 0 %>
     <% all_bookings_formatted = "" %>
-    <% @bookings.each do |booking| %>
+    <% @bookings.reverse.each do |booking| %>
         <% total_earned = total_earned + Payment.find_by(booking_id: booking.id).amount %>
         <% booking_array = get_tutor_booking_info(booking) %>
         <% booking_array.each do |booking_display_record| %>
