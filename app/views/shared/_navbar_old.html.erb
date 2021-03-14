@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <%= link_to image_tag("https://i.imgur.com/N5yZNK2.png?1", border: 0), {action: 'index', controller: '/home'}, {class: 'navbar-brand'} %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <% if (!student_signed_in? && !tutor_signed_in?)%>
+        <li class="nav-item">
+          <%= link_to "Tutor Login",  tutor_session_path, class: 'nav-link active' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Student Login",  student_session_path, class: 'nav-link active' %>
+        </li>
+      <% end %>
+      <% if student_signed_in? %> 
+        <li class="nav-item">
+          <%= link_to "Favourite Tutors",  restricted_path, class: 'nav-link active' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Bookings",  student_bookings_path, class: 'nav-link active' %>
+        </li>
+      <% end %>
+        <% if tutor_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "My Subjects",  restricted_path, class: 'nav-link active' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Bookings",  tutor_bookings_path, class: 'nav-link active' %>
+        </li>
+        <% end %>
+        <% if tutor_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Tutor Central",  tutors_path, class: 'nav-link active' %>
+        </li>
+        <% end %>
+        <% if student_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Tutor Search",  students_path, class: 'nav-link active' %>
+        </li>
+        <% end %>
+        <% if (student_signed_in? || tutor_signed_in?)%>
+        <li class="nav-item">
+          <%= link_to "Logout",  destroy_tutor_session_path, class: 'nav-link active', method: 'delete' %>
+        </li>
+        <% end %>
+        
+
+      <%# <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> %>
+    </div>
+  </div>
+</nav>
