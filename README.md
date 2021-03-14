@@ -1,7 +1,7 @@
 # TutorMe 
 
-This repository contains Nicholas Fehlberg's T2A2 Marketplace Assignment for CoderAcademy
-Date: 14 March 2021
+This repository contains Nicholas Fehlberg's T2A2 Marketplace Assignment for CoderAcademy  
+Date: 14 March 2021  
 * Ruby v3.0.0
 * Rails v6.1.3
 * Database: PostgreSQL
