@@ -10,7 +10,7 @@
     <h6>State: <%= @tutor.state.upcase%></h6>
     <h6>Country: <%= @tutor.country.upcase%></h6><br>
     <% if @subjects.first %>
-        <h4>Subjects taught</h4>
+        <h4>Subjects Hours Available This Month</h4>
         <% @subjects.each do |subject| %>
         <% subject.time > 0 ? time_available = true : time_available = false %>
         <strong><%= subject.title.upcase %></strong><br>
