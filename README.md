@@ -10,7 +10,7 @@ Date: 14 March 2021
 
 ____
 ### Install:  
-```git clone https://github.com/glenfish/TutorMe.git```
+```git clone https://github.com/glenfish/TutorMeApp.git```
 
 Run: ```bundle install```
 
