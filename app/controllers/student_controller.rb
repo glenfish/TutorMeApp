@@ -4,6 +4,7 @@ class StudentController < ApplicationController
     
 
     def index
+        # default page after login, shows the search form
         @@student_id = Student.find(current_student.id).id
         country_codes = []
         state_codes = []
@@ -12,18 +13,20 @@ class StudentController < ApplicationController
             country_codes << [tutor.country.upcase,tutor.country.upcase]
             state_codes << [tutor.state.upcase,tutor.state.upcase]
         end
-        Subject.all.each do |subject_name|
+        subject_array_unsorted = Subject.all
+        subject_array_sorted = subject_array_unsorted.sort_by{ |object| object[:title].downcase }
+        subject_array_sorted.each do |subject_name|
             subjects << [subject_name.title.downcase,subject_name.title.downcase]
         end
-        @country_codes = country_codes.uniq
+        @country_codes = country_codes.uniq.sort
         @country_codes.unshift(["", ""])
-        @state_codes = state_codes.uniq
+        @state_codes = state_codes.uniq.sort
         @state_codes.unshift(["", ""])
         @subjects = subjects.uniq
         @subjects.unshift(["", ""])
-        print "*************#{@country_codes}"
     end
     def search
+        # processes search request
         params.permit(:firstname, :lastname, :country, :state, :subject, :available)
         if params[:subject] != ''
             tutor_join_subject_match = Tutor.joins(:subjects).where('lower(title) LIKE ?', "%#{params[:subject].downcase}%")
@@ -74,6 +77,7 @@ class StudentController < ApplicationController
     end
 
     def tutor_profile
+        # show tutor profile
         @tutor = Tutor.find_by_id(params[:id])
         @tutor_profile = Profile.find_by(tutor_id: params[:id])
         @exists = current_student.favourites.find_by(tutor_id: params[:id])
@@ -81,6 +85,7 @@ class StudentController < ApplicationController
     end
 
     def favourite
+        # processes favouriting and unfavouriting of tutors
         params.permit(:id, :remove)
         exists = current_student.favourites.find_by(tutor_id: params[:id])
         remove = params[:remove]
@@ -99,6 +104,7 @@ class StudentController < ApplicationController
         redirect_to request.referer
     end
     def make_booking
+        # processes the webhook json from stripe
         tx_id = params[:data][:object][:id]
         subject_id = params[:data][:object][:charges][:data][0][:metadata][:subject_id].to_i
         tutor_id = params[:data][:object][:charges][:data][0][:metadata][:tutor_id].to_i
@@ -109,11 +115,9 @@ class StudentController < ApplicationController
 
         if subject.time > 0
             booking = student.bookings.create(tutor_id: tutor_id, time: 1, subject_id: subject_id)
-            print "************** Booking ID: #{booking.id}"
 
             # create the payment using hard coded amount of $60 per hour
             payment = Payment.create(amount: 60, booking_id: booking.id)
-            print "************** Payment ID: #{payment.id}"
             # Decrement the number of hours for the tutor's subject
             
             new_subject_hours = subject.time - 1
@@ -121,27 +125,14 @@ class StudentController < ApplicationController
             # flash[:alert] = "You just made a booking!"
             # redirect_to request.referer
         else
-            # flash[:alert] = "Sorry there is no time avaiable for that subject!"
-            # redirect_to root_url
+            # fail
             print "ALERT*************************************FAILED!!!!!"
         end
 
     end
 
-    def test_make_booking
-        print "&&&&&&&&&&& #{params}"
-        
-        
-        tx_id = params[:data][:object][:id]
-        subject_id = params[:data][:object][:charges][:data][0][:metadata][:subject_id].to_i
-        tutor_id = params[:data][:object][:charges][:data][0][:metadata][:tutor_id].to_i
-        student_id = params[:data][:object][:charges][:data][0][:metadata][:student_id].to_i
-        puts "TX: ******* #{tx_id}"
-        puts "Subject: ******* #{subject_id}"
-        render plain: 'ok'
-    end
-
     def booking_page
+        # the cart page where the stripe session is set
         params.permit(:subject, :tutor)
         tutor_id = params[:tutor].to_i
         subject_id = params[:subject].to_i
@@ -181,12 +172,13 @@ class StudentController < ApplicationController
     end
 
     def success
+        # shown after successful stripe checkout
 
     end
 
 
     def bookings
-        # action: show bookings
+        # shows all bookings a student has successfully paid for
         @bookings = current_student.bookings.all
     end
 end
