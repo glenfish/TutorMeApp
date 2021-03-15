@@ -5,10 +5,10 @@
     <% all_bookings_formatted = "" %>
     <% @bookings.reverse.each do |booking| %>
         <% total_earned = total_earned + Payment.find_by(booking_id: booking.id).amount %>
-        <% all_bookings_formatted << "#{get_tutor_booking_info(booking)}<br>" %>
+        <% all_bookings_formatted << "#{get_tutor_booking_info(booking)}" %>
         <% all_bookings_formatted << "<br><hr><br>" %>
     <% end %>
-    Total earnings: $<%= total_earned %>.00 <br><br>
+    <h5>Total earnings: $<%= total_earned %>.00</h5><br>
     <%= sanitize all_bookings_formatted %>
     
 <% else %>
