@@ -28,6 +28,10 @@ class StudentController < ApplicationController
     def search
         # processes search request
         params.permit(:firstname, :lastname, :country, :state, :subject, :available)
+        case
+        when params[:firstname] == '', params[:lastname] == '', params[:country] == '', params[:state] == '', params[:subject] == '', params[:available] == '0'
+            @tutors = Tutor.all
+        end
         if params[:subject] != ''
             tutor_join_subject_match = Tutor.joins(:subjects).where('lower(title) LIKE ?', "%#{params[:subject].downcase}%")
             @tutors = tutor_join_subject_match
