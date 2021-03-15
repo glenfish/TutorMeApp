@@ -1,4 +1,4 @@
-<h2><%= @tutor.firstname %> <%= @tutor.lastname %></h2><br>
+<h1><%= @tutor.firstname %> <%= @tutor.lastname %></h1><br>
 <% if @tutor_profile %>
     <% if @tutor.profile.photo.url %>
         <%= cl_image_tag @tutor.profile.photo.url, class: 'profile_image_main', cloud_name: $cloud_name %><br><br>
@@ -8,7 +8,7 @@
     <%= @tutor.profile.description %><br><br>
     
     <h6>State: <%= @tutor.state.upcase%></h6>
-    <h6>Country: <%= @tutor.country.upcase%></h6>
+    <h6>Country: <%= @tutor.country.upcase%></h6><br><br>
     <% if @subjects.first %>
         <% @subjects.each do |subject| %>
         <% subject.time > 0 ? time_available = true : time_available = false %>
