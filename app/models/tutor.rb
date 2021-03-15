@@ -12,4 +12,12 @@ class Tutor < ApplicationRecord
   has_many :students, through: :bookings
   has_many :payments, through: :bookings
 
+  validates :email, presence: true
+  validates :firstname, presence: true
+  validates :lastname, presence: true
+  validates :address_1, presence: true
+  validates :postcode, presence: true
+  validates :state, presence: true
+  validates :country, presence: true
+
 end

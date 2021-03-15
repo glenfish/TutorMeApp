@@ -9,4 +9,9 @@ class Student < ApplicationRecord
   has_many :tutors, through: :favourites
   has_one :tutor, through: :bookings
   has_one :payment, through: :bookings
+
+  validates :email, presence: true
+  validates :firstname, presence: true
+  validates :lastname, presence: true
+
 end
