@@ -3,7 +3,7 @@ module StudentHelper
         return current_student.favourites.find_by(tutor_id: id)
     end
 
-    def get_booking_info(booking)
+    def get_student_booking_info(booking)
         booking_info = ""
         subject = Subject.find(booking.subject_id)
         subject_title = subject.title.capitalize
@@ -33,7 +33,13 @@ module StudentHelper
         booking_info << booking_amount.to_s
         booking_info << "<br>Student Contact: "
         booking_info << tutor_email
+        booking_info << "<br><br><a href="
+        booking_info << student_tutor_profile_path(booking.tutor_id)
+        booking_info << " class='btn btn-primary btn-sm'>View Profile</a>"
         booking_info << "</p></div></div>"
+        
+
+
         return booking_info
     end
 end

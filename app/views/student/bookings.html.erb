@@ -4,8 +4,10 @@
     <% booking_array = [] %>
     <% all_bookings_formatted = "" %>
     <% @bookings.reverse.each do |booking| %>
-        <% all_bookings_formatted << "#{get_tutor_booking_info(booking)}<br>" %>
+    <% tutor = Tutor.find(booking.tutor_id) %>
+        <% all_bookings_formatted << "#{get_student_booking_info(booking)}" %>
         <% all_bookings_formatted << "<br><hr><br>" %>
+        
     <% end %>
     <%= sanitize all_bookings_formatted %>
     
