@@ -1,5 +1,6 @@
-<p>You can update the hours on any subject below or <a href="#new-subject">add a new subject</a></p>
+
 <% if @subjects.first %>
+<p>Below are all the subjects you have listed. You can update the hours on any subject below or <a href="#new-subject">add a new subject</a> </p>
     <% @subjects.each do |subject| %>
         <%= form_with model: @subject, url: update_subjects_path, method: "patch" do |form| %>
         <%= form.hidden_field :id, value: subject.id %>
