@@ -28,9 +28,9 @@ class StudentController < ApplicationController
     def search
         # processes search request
         params.permit(:firstname, :lastname, :country, :state, :subject, :available)
-        case
-        when params[:firstname] == '', params[:lastname] == '', params[:country] == '', params[:state] == '', params[:subject] == '', params[:available] == '0'
-            @tutors = Tutor.all
+        if params[:firstname] == '' and params[:lastname] == '' and params[:country] == '' and params[:state] == '' and params[:subject] == '' and params[:available] == '0'
+            flash[:alert] = "Please select or enter something to search"
+            redirect_to request.referer
         end
         if params[:subject] != ''
             tutor_join_subject_match = Tutor.joins(:subjects).where('lower(title) LIKE ?', "%#{params[:subject].downcase}%")
