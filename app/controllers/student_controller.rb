@@ -87,19 +87,21 @@ class StudentController < ApplicationController
     def favourite
         # processes favouriting and unfavouriting of tutors
         params.permit(:id, :remove)
+        tutor_object = Tutor.find_by_id(params[:id])
+        tutor_fullname = tutor_object.firstname.capitalize + " " + tutor_object.lastname.capitalize
         exists = current_student.favourites.find_by(tutor_id: params[:id])
         remove = params[:remove]
         if exists and remove
             record = current_student.favourites.find_by_tutor_id(params[:id])
             record.destroy
-            flash[:alert] = "Tutor has been removed"
+            flash[:alert] = "#{tutor_fullname} has been removed from your favourites list"
         elsif
-            flash[:alert] = "Tutor is already in your favourites"
+            flash[:alert] = "#{tutor_fullname} is already in your favourites list"
         end
         
         if !exists
             current_student.favourites.create(tutor_id: params[:id])
-            flash[:alert] = "You have added the tutor to your favourites!"
+            flash[:alert] = "You have added #{tutor_fullname} to your favourites list!"
         end
         redirect_to request.referer
     end
