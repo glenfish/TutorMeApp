@@ -13,12 +13,12 @@
   </head>
 
   <body>
-  <div class="container">
-    <%= render '/shared/navbar' %><br>
+  <div class="page-container">
+    <%= render '/shared/navbar' %>
     <% if alert %>
       <div id="alert" class="alert"><%= alert %></div>
     <% end %>
-    <div style="padding-left:15px">
+    <div class="content-container">
     <%= yield %>
     </div>
     </div>
