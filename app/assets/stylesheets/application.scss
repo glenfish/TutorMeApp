@@ -12,6 +12,32 @@
  *
  */
  @import "bootstrap";
+ 
+ body {
+     background:rgb(234, 249, 254)
+ }
+
+ .page-container {
+    max-width: 1024px;
+    margin: 0 auto;
+
+ }
+
+.content-container {
+    max-width:100%;
+    margin: 20px auto;
+    padding: 0px;
+
+}
+
+
+
+.hero-image {
+    padding: 0;
+    margin: 0;
+
+}
+
  .bold {
     font-weight: 600;
 }
@@ -44,10 +70,25 @@
 }
 
 #alert {
-    margin-top:10px;
+    max-width:500px;
+    margin-top:2px;
     margin-bottom:20px;
-    padding:6px;
-    background: rgb(249, 249, 199);
+    padding:8px;
+    background: rgb(255, 241, 160);
+    opacity: 1;
+	animation-name: fadein;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 1.4s;
+}
+
+@keyframes fadein {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 .form-container {
