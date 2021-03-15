@@ -1,27 +1,32 @@
 <h2><%= @tutor.firstname %> <%= @tutor.lastname %></h2><br>
 <% if @tutor_profile %>
     <% if @tutor.profile.photo.url %>
-        <%= cl_image_tag @tutor.profile.photo.url, class: 'profile_image_main', cloud_name: $cloud_name %>
+        <%= cl_image_tag @tutor.profile.photo.url, class: 'profile_image_main', cloud_name: $cloud_name %><br><br>
     <% end %>
     <h3><%= @tutor_profile.title %></h3>
     <p>
     <%= @tutor.profile.description %><br><br>
     
     <h6>State: <%= @tutor.state.upcase%></h6>
-    <h6>Country: <%= @tutor.country.upcase%></h6><br>
+    <h6>Country: <%= @tutor.country.upcase%></h6>
     <% if @subjects.first %>
-        <h4>Subjects Hours Available This Month</h4>
         <% @subjects.each do |subject| %>
         <% subject.time > 0 ? time_available = true : time_available = false %>
-        <strong><%= subject.title.upcase %></strong><br>
-        Hours available: <%= subject.time %>
-        <% if time_available %>
-            
-            <%= button_to "Book Time", booking_page_path, method: :get, params: { subject: subject.id, tutor: @tutor.id }, class: "btn btn-primary btn" %><br><br>
-            
-        <% else %>
-            <br><br>
-        <% end %>
+        <div class="subject-row">
+            <div class="jumbotron-fluid">
+                <div class="container-fluid">
+                <h4 class="display-6"><%= subject.title.upcase %></h4>
+                <p class="lead">Hours available: <%= subject.time %><br>
+                <% if time_available %>
+                    <%= button_to "Book Time", booking_page_path, method: :get, params: { subject: subject.id, tutor: @tutor.id }, class: "btn btn-primary btn" %>
+                    <hr class="my-4">
+                <% else %>
+                    <hr class="my-4">
+                <% end %>
+                </p>
+                </div>
+            </div>
+        </div>
         <% end %>
     <% else %>
         <br><h4><%= @tutor.firstname %> is not actively tutoring at this time</h4>
