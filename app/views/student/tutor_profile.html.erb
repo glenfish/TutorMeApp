@@ -16,7 +16,7 @@
             <div class="jumbotron-fluid">
                 <div class="container-fluid">
                 <h4 class="display-6"><%= subject.title.upcase %></h4>
-                <p class="lead">Hours available: <%= subject.time %><br>
+                <p class="lead">Hours available: &nbsp;<span class="bold"><%= subject.time %></span><br>
                 <% if time_available %>
                     <%= button_to "Book Time", booking_page_path, method: :get, params: { subject: subject.id, tutor: @tutor.id }, class: "btn btn-primary btn" %>
                     <hr class="my-4">
