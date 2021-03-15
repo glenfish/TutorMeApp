@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_13_023145) do
+ActiveRecord::Schema.define(version: 2021_03_15_041457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(version: 2021_03_13_023145) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "firstname"
-    t.string "lastname"
+    t.string "firstname", null: false
+    t.string "lastname", null: false
     t.string "gender"
     t.integer "age"
     t.string "status"
@@ -113,13 +113,13 @@ ActiveRecord::Schema.define(version: 2021_03_13_023145) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "firstname"
-    t.string "lastname"
-    t.string "address_1"
+    t.string "firstname", null: false
+    t.string "lastname", null: false
+    t.string "address_1", null: false
     t.string "address_2"
-    t.string "postcode"
-    t.string "state"
-    t.string "country"
+    t.string "postcode", null: false
+    t.string "state", null: false
+    t.string "country", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_tutors_on_email", unique: true
