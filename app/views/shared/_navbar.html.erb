@@ -8,51 +8,51 @@
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
       <% if (!student_signed_in? && !tutor_signed_in?)%>
         <li class="nav-item">
-          <%= link_to "About Us",  about_us_path, class: 'nav-link active px-2' %>
+          <%= link_to "About Us",  about_us_path, class: 'nav-link active px-4' %>
         </li>
-        <li class="nav-item dropdown">
-          <span class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</span>
-          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li><%= link_to "Tutors",  tutor_session_path, class: 'nav-link active px-2' %></li>
-            <li><%= link_to "Students",  student_session_path, class: 'nav-link active px-2' %></li>
-          </ul>
-        </li>
+        <%# <li class="nav-item dropdown"> %>
+          <%# <span class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</span> %>
+          <%# <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown"> %>
+            <li><%= link_to "Tutor Login",  tutor_session_path, class: 'nav-link active px-4' %></li>
+            <li><%= link_to "Student Login",  student_session_path, class: 'nav-link active px-4' %></li>
+          <%# </ul> %>
+        <%# </li> %>
       <% end %>
       <% if student_signed_in? %> 
         <li class="nav-item">
-          <%= link_to "Favourite Tutors",  restricted_path, class: 'nav-link active px-2' %>
+          <%= link_to "Favourite Tutors",  restricted_path, class: 'nav-link active px-3' %>
         </li>
         <li class="nav-item">
-          <%= link_to "Bookings",  student_bookings_path, class: 'nav-link active px-2' %>
+          <%= link_to "Bookings",  student_bookings_path, class: 'nav-link active px-3' %>
         </li>
       <% end %>
         <% if tutor_signed_in? %>
         <li class="nav-item">
-          <%= link_to "My Subjects",  restricted_path, class: 'nav-link active px-2' %>
+          <%= link_to "My Subjects",  restricted_path, class: 'nav-link active px-3' %>
         </li>
         <li class="nav-item">
-          <%= link_to "Bookings",  tutor_bookings_path, class: 'nav-link active px-2' %>
+          <%= link_to "Bookings",  tutor_bookings_path, class: 'nav-link active px-3' %>
         </li>
         <% end %>
         <% if tutor_signed_in? %>
         <li class="nav-item">
-          <%= link_to "Tutor Central",  tutors_path, class: 'nav-link active px-2' %>
+          <%= link_to "Tutor Central",  tutors_path, class: 'nav-link active px-3' %>
         </li>
         <li class="nav-item">
-          <%= link_to "About Us",  about_us_path, class: 'nav-link active px-2' %>
+          <%= link_to "About Us",  about_us_path, class: 'nav-link active px-3' %>
         </li>
         <% end %>
         <% if student_signed_in? %>
         <li class="nav-item">
-          <%= link_to "Tutor Search",  students_path, class: 'nav-link active px-2' %>
+          <%= link_to "Tutor Search",  students_path, class: 'nav-link active px-3' %>
         </li>
         <li class="nav-item">
-          <%= link_to "About Us",  about_us_path, class: 'nav-link active px-2' %>
+          <%= link_to "About Us",  about_us_path, class: 'nav-link active px-3' %>
         </li>
         <% end %>
         <% if (student_signed_in? || tutor_signed_in?)%>
         <li class="nav-item">
-          <%= link_to "Logout",  destroy_tutor_session_path, class: 'nav-link active px-2', method: 'delete' %>
+          <%= link_to "Logout",  destroy_tutor_session_path, class: 'nav-link active px-3', method: 'delete' %>
         </li>
       <% end %>
       </ul>  
