@@ -28,15 +28,15 @@
       <% end %>
         <% if tutor_signed_in? %>
         <li class="nav-item">
-          <%= link_to "My Bookings",  tutor_bookings_path, class: 'nav-link active px-3 navbar-brand' %>
+          <%= link_to "Bookings",  tutor_bookings_path, class: 'nav-link active px-3 navbar-brand' %>
         </li>
         <li class="nav-item">
-          <%= link_to "My Subjects",  restricted_path, class: 'nav-link active px-3 navbar-brand' %>
+          <%= link_to "Subjects",  restricted_path, class: 'nav-link active px-3 navbar-brand' %>
         </li>
         <% end %>
         <% if tutor_signed_in? %>
         <li class="nav-item">
-          <%= link_to "My Profile",  tutors_path, class: 'nav-link active px-3 navbar-brand' %>
+          <%= link_to "Profile",  tutors_path, class: 'nav-link active px-3 navbar-brand' %>
         </li>
         <li class="nav-item">
           <%= link_to "About Us",  about_us_path, class: 'nav-link active px-3 navbar-brand' %>
