@@ -1,5 +1,5 @@
 <% if tutor_signed_in? %>
-    <h1><%= @tutor.firstname %>'s Subjects</h1>
+    <h1>Your Subjects</h1>
     <%= render 'subjects_form', locals: @subject %>
     
 <% end %>
@@ -17,8 +17,8 @@
             <%= tutor.email.downcase.sub(/\A(.)(.*)(...)\z/) {|m| $1 + ("*" * $2.length) + $3 } %><br>
             <%= tutor.state.upcase %><br>
             <%= tutor.country.upcase %><br>
-            <%= link_to 'View Profile', student_tutor_profile_path(tutor) %><br>
-            <%= link_to "remove from favourites", :controller => "student", :action => "favourite", :id => tutor.id, :remove => true %><br><br>
+            <%= link_to 'View Profile', student_tutor_profile_path(tutor), class: "btn btn-primary btn" %><br><br>
+            <%= link_to "remove from favourites", {controller: "student", action: "favourite", id: tutor.id, remove: true}, class: "btn btn-sm btn-outline-info" %><br><br>
             <hr>
         </div>
         <% end %>

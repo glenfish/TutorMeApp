@@ -1,26 +1,27 @@
-<h1>Tutor Search</h1>
-<p>
+<div>
 <h4><%= current_student.firstname.capitalize %>, find your perfect Tutor!</h4>
-Enter any combination of search critera below:
-</p>
+</div>
 
 <%= form_with url: search_path, method: :get do |form| %>
 
   <%= form.label :subject %><br>
-  <%= form.select :subject, @subjects, selected: "" %><br>
-
-  <%= form.check_box :available %>
-  <%= form.label "search only for tutors with available hours" %><br>
+  <%= form.select :subject, @subjects,  {}, {class: "form-select mb-2 w-50"}%>
+  <div id="search-checkbox">
+  <%= form.check_box :available, class: "form-check-input form-control form-check-inline mb-4 mycheckbox" %>
+  <%= form.label "Available hours only", class: "pad-top" %> 
+ </div>
 
   <%= form.label :country %><br>
-  <%= form.select :country, @country_codes , selected: "" %><br>
+  <%= form.select :country, @country_codes,  {}, {class: "form-select mb-1 w-25"} %><br>
 
   <%= form.label :state %><br>
-  <%= form.select :state, @state_codes, selected: "" %><br>
+  <%= form.select :state, @state_codes,  {}, {class: "form-select mb-1 w-25"} %><br>
 
   <%= form.label "First Name" %><br>
-  <%= form.text_field :firstname %><br>
+  <%= form.text_field :firstname, class: "form-control w-25 mb1"%><br>
   <%= form.label "Last Name" %><br>
-  <%= form.text_field :lastname %><br><br>
-  <%= form.submit "Find A Tutor" %>
+  <%= form.text_field :lastname, class: "form-control w-25 mb1" %><br>
+  <%= form.submit "Find A Tutor", class: "btn btn-primary btn-lg" %>
 <% end %>
+<br><br>
+

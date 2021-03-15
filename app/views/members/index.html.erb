@@ -2,7 +2,6 @@
 <br>
 
 <% if @profile %>
-<%= link_to "Edit Profile", profile_form_path %>
     <p>
     <h3><%= @profile.title %></h3>
     <p>
@@ -12,18 +11,18 @@
     <% unless @profile.photo.url.nil? %>
         <%= cl_image_tag @profile.photo.url, cloud_name: $cloud_name %>
     <% end %>
-    <br><br>
+    <br><br><%= link_to "Edit Profile", profile_form_path, class: "btn btn-sm btn-info" %><br><br>
     <% if @subjects.first %>
-        <h4>Subjects taught</h4>
+        <%= link_to "Edit Subjects or Hours", restricted_path, class: "btn btn-sm btn-warning"%><br><br>
+        <h4>Subjects You Offer</h4>
         <% @subjects.each do |subject| %>
         <%= subject.title.upcase %><br>
         Hours available: <%= subject.time %>  <br><br>
         <% end %>
-        <%= link_to "Edit subjects or hours", restricted_path%>
     <% else %>
         <h4>You are currently teaching no subjects</h4>
         <p>Click the link below to add a subject and the amount of hours this month you wish to teach.</p>
-        <%= link_to "Add subjects", restricted_path %>
+        <%= link_to "Add subjects", restricted_path, class: "btn btn-sm btn-success" %>
     <% end %>
     </p>
     <hr>

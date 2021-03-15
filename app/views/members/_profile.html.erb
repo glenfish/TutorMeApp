@@ -1,16 +1,17 @@
 
 <%= form_with model: @profile do |form| %>
-  <%= form.label :title %><br />
-  <%= form.text_field :title, :required => true %><br><br>
-  <%= form.label :description %><br />
-  <%= form.text_area :description, size: "60x10", :required => true %><br>
+  <h5><%= form.label :title %></h5><br />
+  <%= form.text_field :title, :required => true, class: "form-control w-100 mb1" %><br><br>
+  <h5><%= form.label :description %></h5><br />
+  <%= form.text_area :description, size: "60x10", :required => true, class: "form-control mb1" %><br>
   <% if @profile.photo.attached? %>
+  <h5>Image</h5><br>
     <%= cl_image_tag @profile.photo.url, cloud_name: $cloud_name %><br>
     <%= form.label "Change Photo" %><br />
-    <%= form.file_field :photo %><br /><br />
+    <%= form.file_field :photo, class: "btn btn-sm btn-warning" %><br /><br />
   <% else %>
     <%= form.label "Add Your Photo" %><br />
     <%= form.file_field :photo %><br /><br />
   <% end %>
-  <%= form.submit %><br><br>
+  <%= form.submit class: "btn btn-success" %><br><br>
 <% end %>

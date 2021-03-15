@@ -1,31 +1,32 @@
+<p>You can update the hours on any subject below or <a href="#new-subject">add a new subject</a></p>
 <% if @subjects.first %>
     <% @subjects.each do |subject| %>
         <%= form_with model: @subject, url: update_subjects_path, method: "patch" do |form| %>
         <%= form.hidden_field :id, value: subject.id %>
         <%= form.label "Subject" %><br>
-        <%= form.text_field :title, value: subject.title, :required => true  %><br>
+        <%= form.text_field :title, value: subject.title, :required => true, class: "form-control w-25 mb1"  %><br>
         <%= form.label "Hours offered this month" %><br>
-        <%= form.number_field :time, in: 0..100, step: 1, value: subject.time, :required => true  %><br>
-        <%= form.submit %>
-        <%= link_to "delete", destroy_subject_path(id: subject.id), method: :delete %>
-        <% end %><br>
+        <%= form.number_field :time, in: 0..100, step: 1, value: subject.time, :required => true, class: "form-control w-25 mb1"  %><br>
+        <%= form.submit class: "btn btn-success" %>
+        <% end %><hr>
     <% end %>
-    <h4>Add another subject:</h4>
+    <a name="new-subject"></a>
+    <h4>Add New Subject:</h4>
     <%= form_with model: @subject, url: create_subjects_path do |form| %>
         <%= form.label "Subject" %><br>
-        <%= form.text_field :title, :required => true  %><br>
+        <%= form.text_field :title, :required => true, class: "form-control w-25 mb1"  %><br>
         <%= form.label "Hours offered this month" %><br>
-        <%= form.number_field :time, in: 0..100, step: 1, :required => true  %><br>
-        <%= form.submit %>
-    <% end %><br>
+        <%= form.number_field :time, in: 0..100, step: 1, :required => true, class: "form-control w-25 mb1"  %><br>
+        <%= form.submit class: "btn btn-success" %>
+    <% end %><hr>
 <% else %>
-    <p>Add a subject and tutoring hours</p>
+    <p>Add Subject and Tutoring Hours</p>
     <%= form_with model: @subject, url: create_subjects_path do |form| %>
         <%= form.label "Subject" %><br>
-        <%= form.text_field :title, :required => true  %><br>
+        <%= form.text_field :title, :required => true, class: "form-control w-25 mb1"  %><br>
         <%= form.label "Hours offered this month" %><br>
-        <%= form.number_field :time, in: 0..100, step: 1, :required => true  %><br>
-        <%= form.submit %>
+        <%= form.number_field :time, in: 0..100, step: 1, :required => true, class: "form-control w-25 mb1"  %><br><br>
+        <%= form.submit class: "btn btn-success" %>
     <% end %><br>
 <% end %>
 

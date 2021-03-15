@@ -2,8 +2,9 @@
 <% if @tutors != [] and !@tutors.nil? %>
     <% @tutors.each do |tutor| %>
             Name:
+            <span class="bold">
             <%= tutor.firstname ? tutor.firstname.capitalize : 'none' %>
-            <%= tutor.lastname.capitalize %><br>
+            <%= tutor.lastname.capitalize %></span><br>
             Email: 
             <%= tutor.email.downcase.sub(/\A(.)(.*)(...)\z/) {|m| $1 + ("*" * $2.length) + $3 } %><br>
             <% if tutor.postcode != '' %>
@@ -15,11 +16,11 @@
             <% if tutor.country.upcase != '' %>
                 <%= tutor.country.upcase %><br>
             <% end %>
-            <%= link_to 'View Profile', student_tutor_profile_path(tutor) %><br>
-            <% if is_favourited(tutor.id) %>
-                <%= link_to "remove from favourites", :controller => "student", :action => "favourite", :id => tutor.id, :remove => true %>
-            <% else %>
-                <%= link_to "add to favourites", favourite_path(tutor.id) %>
+            <%= link_to 'View Profile', student_tutor_profile_path(tutor), class: "btn btn-primary btn" %><br>
+            <% if is_favourited(tutor.id) %><br>
+                <%= link_to "remove from favourites", {controller: "student", action: "favourite", id: tutor.id, remove: true}, class: "btn btn-sm btn-outline-info" %>
+            <% else %><br>
+                <%= link_to "add to favourites", favourite_path(tutor.id), class: "btn btn-sm btn-outline-info" %>
             <% end %>
             <br><br>
     <% end %>

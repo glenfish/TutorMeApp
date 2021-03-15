@@ -4,17 +4,17 @@
   <%= render "devise/shared/error_messages", resource: resource %>
   <div class="field">
     <%= f.label "First Name" %><br />
-    <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname" %>
+    <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", class: "form-control mb3" %>
   </div>
 
   <div class="field">
     <%= f.label "Last Name" %><br />
-    <%= f.text_field :lastname, autofocus: true, autocomplete: "lastname" %>
+    <%= f.text_field :lastname, autofocus: true, autocomplete: "lastname", class: "form-control mb3" %>
   </div>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mb3" %>
   </div>
 
   <div class="field">
@@ -22,20 +22,18 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control mb3" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control mb3" %>
   </div>
 
   <br>
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: "btn btn-primary btn-lg" %>
   </div>
   <br>
 <% end %>
 <br>
-
-<%= render "devise/shared/links" %>

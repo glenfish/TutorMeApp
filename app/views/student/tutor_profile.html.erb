@@ -17,7 +17,7 @@
         Hours available: <%= subject.time %>
         <% if time_available %>
             
-            <%= button_to "Book Time", booking_page_path, method: :get, params: { subject: subject.id, tutor: @tutor.id } %><br><br>
+            <%= button_to "Book Time", booking_page_path, method: :get, params: { subject: subject.id, tutor: @tutor.id }, class: "btn btn-primary btn" %><br><br>
             
         <% else %>
             <br><br>
@@ -33,7 +33,7 @@
 <% if !@exists %>
     <%= link_to "add to favourites", favourite_path(@tutor.id) %> | 
 <% else %>
-    <%= link_to "remove from favourites", :controller => "student", :action => "favourite", :id => @tutor.id, :remove => true %> | 
+    <%= link_to "remove from favourites", {controller: "student", action: "favourite", id: @tutor.id, remove: true}, class: "btn btn-sm btn-outline-info" %> &nbsp;&nbsp;
 <% end %>
-<%= link_to "back", request.referer.present? ? request.referer : default_path %>
+<%= link_to "back", request.referer.present? ? request.referer : default_path, class: "btn btn-sm btn-outline-secondary" %>
 <br><br>

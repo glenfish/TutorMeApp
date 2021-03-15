@@ -11,7 +11,13 @@
  * It is generally better to create a new file per style scope.
  *
  */
+
+
  @import "bootstrap";
+
+.bold {
+    font-weight: 600;
+}
 
  .tutor_fave_pic {
     float: right;
@@ -26,4 +32,24 @@
     max-width: 500px;
 
 }
- 
+
+.mycheckbox {
+    height:30px;
+    width: 30px;
+}
+
+.pad-top {
+    padding-top: 5px;
+}
+
+#search-checkbox {
+    margin-bottom: 0;
+}
+
+#alert {
+    margin-top:10px;
+    margin-bottom:20px;
+    padding:6px;
+    background: rgb(249, 249, 199);
+}
+

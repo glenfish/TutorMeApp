@@ -7,15 +7,15 @@
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
       <% if (!student_signed_in? && !tutor_signed_in?)%>
-        <%# <li class="nav-item dropdown"> %>
-          <%# <span class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</span> %>
-          <%# <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown"> %>
-            <li><%= link_to "Tutor Login",  tutor_session_path, class: 'nav-link active px-2' %></li>
-            <li><%= link_to "Student Login",  student_session_path, class: 'nav-link active px-2' %></li>
-          <%# </ul> %>
-        <%# </li> %>
         <li class="nav-item">
           <%= link_to "About Us",  about_us_path, class: 'nav-link active px-2' %>
+        </li>
+        <li class="nav-item dropdown">
+          <span class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</span>
+          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+            <li><%= link_to "Tutors",  tutor_session_path, class: 'nav-link active px-2' %></li>
+            <li><%= link_to "Students",  student_session_path, class: 'nav-link active px-2' %></li>
+          </ul>
         </li>
       <% end %>
       <% if student_signed_in? %> 
@@ -38,10 +38,16 @@
         <li class="nav-item">
           <%= link_to "Tutor Central",  tutors_path, class: 'nav-link active px-2' %>
         </li>
+        <li class="nav-item">
+          <%= link_to "About Us",  about_us_path, class: 'nav-link active px-2' %>
+        </li>
         <% end %>
         <% if student_signed_in? %>
         <li class="nav-item">
           <%= link_to "Tutor Search",  students_path, class: 'nav-link active px-2' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "About Us",  about_us_path, class: 'nav-link active px-2' %>
         </li>
         <% end %>
         <% if (student_signed_in? || tutor_signed_in?)%>

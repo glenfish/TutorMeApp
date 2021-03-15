@@ -5,17 +5,17 @@
 
   <div class="field">
     <%= f.label 'First Name' %><br />
-    <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname" %>
+    <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", class: "form-control mb3" %>
   </div>
 
   <div class="field">
     <%= f.label 'Last Name' %><br />
-    <%= f.text_field :lastname, autofocus: true, autocomplete: "lastname" %>
+    <%= f.text_field :lastname, autofocus: true, autocomplete: "lastname", class: "form-control mb3" %>
   </div>
   
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mb3" %>
   </div>
 
   <div class="field">
@@ -23,41 +23,41 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control mb3" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control mb3" %>
   </div>
 
   <div class="field">
     <%= f.label :address_1 %><br />
-    <%= f.text_field :address_1, autofocus: true, autocomplete: "address_1" %>
+    <%= f.text_field :address_1, autofocus: true, autocomplete: "address_1", class: "form-control mb3" %>
   </div>
 
   <div class="field">
     <%= f.label :address_2 %><br />
-    <%= f.text_field :address_2, autofocus: true, autocomplete: "address_2" %>
+    <%= f.text_field :address_2, autofocus: true, autocomplete: "address_2", class: "form-control mb3" %>
   </div>
 
   <div class="field">
     <%= f.label :postcode %><br />
-    <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode" %>
+    <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode", class: "form-control mb3" %>
   </div>
 
   <div class="field">
     <%= f.label :state %><br />
-    <%= f.text_field :state, autofocus: true, autocomplete: "state" %>
+    <%= f.text_field :state, autofocus: true, autocomplete: "state", class: "form-control mb3" %>
   </div>
 
   <div class="field">
     <%= f.label :country %><br />
-    <%= f.text_field :country, autofocus: true, autocomplete: "country" %>
+    <%= f.text_field :country, autofocus: true, autocomplete: "country", class: "form-control mb3" %>
   </div><br>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Create My Tutor Account!", class: "btn btn-primary btn-lg" %>
   </div>
 <% end %>
 <br>

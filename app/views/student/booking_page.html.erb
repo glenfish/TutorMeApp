@@ -1,11 +1,24 @@
-<h4>You are about to purchase 1 hour of tutoring time</h4>
-<p>Tutor name: <%= @tutor_fullname %><br>
-Subject: <%= @subject_title.capitalize %><br>
-Price: $60.00
-</p>
+<div class="jumbotron jumbotron-fluid" id="jumbo">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Purchase 1 hour of tutoring</h4>
+      </div>
+      <div class="modal-body">
+        <p>Tutor name: <%= @tutor_fullname %><br>
+		Subject: <%= @subject_title.capitalize %><br>
+		Price: $60.00<br>
+		</p>
+      </div>
+      <div class="modal-footer">
+        <button data-stripe="payment" class="btn btn-primary btn-lg">Go To Checkout</button><br><br>
 
-<button data-stripe="payment">Go To Checkout</button><br><br>
-<small>After clicking the button you will be redirected to Stripe to complete payment</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script src="https://js.stripe.com/v3/"></script>
 
 <script>
