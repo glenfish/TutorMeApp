@@ -1,4 +1,5 @@
-<h2>Student Log in</h2>
+<h6>Need an Account? <%= link_to "Signup", new_student_registration_path %></h6>
+<h2>Student Login</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
