@@ -2,31 +2,35 @@
 <br>
 
 <% if @profile %>
-    <p>
+    <% unless @profile.photo.url.nil? %>
+        <%= cl_image_tag @tutor.profile.photo.url, class: 'profile_image_main', cloud_name: $cloud_name %><br><br>
+    <% end %>
     <h3><%= @profile.title %></h3>
     <p>
-    <%= @profile.description %>
-    </p>
-    <br>
-    <% unless @profile.photo.url.nil? %>
-        <%= cl_image_tag @profile.photo.url, cloud_name: $cloud_name %>
-    <% end %>
-    <br><br><%= link_to "Edit Profile", profile_form_path, class: "btn btn-sm btn-info" %><br><br>
-    <% if @subjects.first %>
-        <%= link_to "Edit Subjects or Hours", restricted_path, class: "btn btn-sm btn-warning"%><br><br>
-        <h4>Subjects You Offer</h4>
-        <% @subjects.each do |subject| %>
-        <%= subject.title.upcase %><br>
-        Hours available: <%= subject.time %>  <br><br>
-        <% end %>
-    <% else %>
-        <h4>You are currently teaching no subjects</h4>
-        <p>Click the link below to add a subject and the amount of hours this month you wish to teach.</p>
-        <%= link_to "Add subjects", restricted_path, class: "btn btn-sm btn-success" %>
-    <% end %>
-    </p>
-    <hr>
+    <%= @profile.description %><br><br>
     
+    <h6>State: <%= @tutor.state.upcase%></h6>
+    <h6>Country: <%= @tutor.country.upcase%></h6><br><br>
+    <div class="clear"><br></div>
+    <%= link_to "Edit Profile", profile_form_path, class: "btn btn btn-info" %><br><br>
+    <% if @subjects.first %>
+        <%= link_to "Edit Subjects or Hours", restricted_path, class: "btn btn btn-warning"%><br><br>
+    <% end %>
+    <% if @subjects.first %>
+        <% @subjects.each do |subject| %>
+            <% subject.time > 0 ? time_available = true : time_available = false %>
+            <div class="subject-row">
+                <div class="jumbotron-fluid">
+                    <div class="container-fluid">
+                    <h4 class="display-6"><%= subject.title.upcase %></h4>
+                    <p class="lead">Hours available: &nbsp;<span class="bold"><%= subject.time %></span><br>
+                    <hr class="my-4">
+                    </p>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
 <% else %>
     <h4>You haven't set up your profile yet.</h4>
     <%= link_to 'Create A Profile', profile_form_path %>
