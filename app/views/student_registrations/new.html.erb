@@ -1,39 +1,40 @@
 <h2>Student Sign up</h2>
+<div class="form-container">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="field">
+      <%= f.label "First Name" %><br />
+      <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", class: "form-control mb3" %>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="field">
-    <%= f.label "First Name" %><br />
-    <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", class: "form-control mb3" %>
-  </div>
+    <div class="field">
+      <%= f.label "Last Name" %><br />
+      <%= f.text_field :lastname, autocomplete: "lastname", class: "form-control mb3" %>
+    </div>
 
-  <div class="field">
-    <%= f.label "Last Name" %><br />
-    <%= f.text_field :lastname, autocomplete: "lastname", class: "form-control mb3" %>
-  </div>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autocomplete: "email", class: "form-control mb3" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email", class: "form-control mb3" %>
-  </div>
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control mb3" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: "form-control mb3" %>
-  </div>
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control mb3" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control mb3" %>
-  </div>
-
+    <br>
+    <div class="actions">
+      <%= f.submit "Create My Student Account!", class: "btn btn-primary btn-lg" %>
+    </div>
+    <br>
+  <% end %>
   <br>
-  <div class="actions">
-    <%= f.submit "Create My Student Account!", class: "btn btn-primary btn-lg" %>
-  </div>
-  <br>
-<% end %>
-<br>
+</div>
