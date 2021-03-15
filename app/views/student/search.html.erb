@@ -18,9 +18,9 @@
             <% end %>
             <%= link_to 'View Profile', student_tutor_profile_path(tutor), class: "btn btn-primary btn" %><br>
             <% if is_favourited(tutor.id) %><br>
-                <%= link_to "remove from favourites", {controller: "student", action: "favourite", id: tutor.id, remove: true}, class: "btn btn-sm btn-outline-info" %>
+                <%= link_to "remove from favourites", {controller: "student", action: "favourite", id: tutor.id, remove: true}, class: "btn btn-sm btn-outline-secondary" %>
             <% else %><br>
-                <%= link_to "add to favourites", favourite_path(tutor.id), class: "btn btn-sm btn-outline-info" %>
+                <%= link_to "add to favourites", favourite_path(tutor.id), class: "btn btn-sm btn-outline-success" %>
             <% end %>
             <br><br>
     <% end %>
