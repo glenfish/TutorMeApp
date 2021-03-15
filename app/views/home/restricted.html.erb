@@ -9,18 +9,26 @@
     <% if @tutors != [] %>
         <% @tutors.each do |tutor| %>
         <div class="tutor_fave_container">
-            <% if tutor.profile.photo.url %>
-                <%= cl_image_tag tutor.profile.photo.url , class: 'tutor_fave_pic', :width => 130, :crop => "pad", cloud_name: $cloud_name %>
-            <% end %><br><br>
-            <%= tutor.firstname ? tutor.firstname.capitalize : 'none' %> 
-            <%= tutor.lastname.capitalize %><br>
-            <%= tutor.email.downcase.sub(/\A(.)(.*)(...)\z/) {|m| $1 + ("*" * $2.length) + $3 } %><br>
+
+            <div class="card">
+                <div class="card-header">
+                Favourited
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><%= tutor.firstname ? tutor.firstname.capitalize : 'none' %> 
+            <%= tutor.lastname.capitalize %></h5>
+                <%# <p class="card-text">Email contact will be revealed after booking</p> %>
+                <% if tutor.profile.photo.url %>
+                    <%= cl_image_tag tutor.profile.photo.url , class: 'tutor_fave_pic', :width => 130, :crop => "pad", cloud_name: $cloud_name %>
+                <% end %>
+                <%= tutor.email.downcase.sub(/\A(.)(.*)(...)\z/) {|m| $1 + ("*" * $2.length) + $3 } %><br>
             <%= tutor.state.upcase %><br>
-            <%= tutor.country.upcase %><br>
+            <%= tutor.country.upcase %><br><br>
             <%= link_to 'View Profile', student_tutor_profile_path(tutor), class: "btn btn-primary btn" %><br><br>
-            <%= link_to "remove from favourites", {controller: "student", action: "favourite", id: tutor.id, remove: true}, class: "btn btn-sm btn-outline-secondary" %><br><br>
-            <hr>
+            <%= link_to "remove from favourites", {controller: "student", action: "favourite", id: tutor.id, remove: true}, class: "btn btn-sm btn-outline-secondary" %>
+            </div>
         </div>
+        <br>
         <% end %>
     <% else %>
         <h4>You currently have no favourites selected</h4>
