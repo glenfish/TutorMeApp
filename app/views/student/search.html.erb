@@ -1,28 +1,25 @@
 <h1>Search Results</h1>
 <% if @tutors != [] and !@tutors.nil? %>
     <% @tutors.each do |tutor| %>
-            Name:
-            <span class="bold">
-            <%= tutor.firstname ? tutor.firstname.capitalize : 'none' %>
-            <%= tutor.lastname.capitalize %></span><br>
-            Email: 
-            <%= tutor.email.downcase.sub(/\A(.)(.*)(...)\z/) {|m| $1 + ("*" * $2.length) + $3 } %><br>
-            <% if tutor.postcode != '' %>
-                <%= tutor.postcode %><br>
-            <% end %>
-            <% if tutor.state.upcase != '' %>
-                <%= tutor.state.upcase %><br>
-            <% end %>
-            <% if tutor.country.upcase != '' %>
-                <%= tutor.country.upcase %><br>
-            <% end %>
-            <%= link_to 'View Profile', student_tutor_profile_path(tutor), class: "btn btn-primary btn" %><br>
-            <% if is_favourited(tutor.id) %><br>
-                <%= link_to "remove from favourites", {controller: "student", action: "favourite", id: tutor.id, remove: true}, class: "btn btn-sm btn-outline-secondary" %>
-            <% else %><br>
-                <%= link_to "add to favourites", favourite_path(tutor.id), class: "btn btn-sm btn-outline-success" %>
-            <% end %>
-            <br><br>
+        <div class="tutor_fave_container">
+            <div class="card">
+                <div class="card-header">
+                
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Name: <%= tutor.firstname ? tutor.firstname.capitalize : 'none' %>
+            <%= tutor.lastname.capitalize %></h5>
+                <%# <p class="card-text">Email contact will be revealed after booking</p> %>
+                <% if tutor.profile.photo.url %>
+                    <%= cl_image_tag tutor.profile.photo.url , class: 'tutor_fave_pic', :width => 130, :crop => "pad", cloud_name: $cloud_name %>
+                <% end %>
+                Email: <%= tutor.email.downcase.sub(/\A(.)(.*)(...)\z/) {|m| $1 + ("*" * $2.length) + $3 } %><br>
+            State: <%= tutor.state.upcase %><br>
+            Country: <%= tutor.country.upcase %><br><br>
+            <%= link_to 'View Profile', student_tutor_profile_path(tutor), class: "btn btn-primary btn" %><br><br>
+            <%= link_to "remove from favourites", {controller: "student", action: "favourite", id: tutor.id, remove: true}, class: "btn btn-sm btn-outline-secondary" %>
+            </div>
+        </div><br>
     <% end %>
 <% else %>
     <h4>Nothing matched your search</h4>
