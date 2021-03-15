@@ -8,7 +8,7 @@
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
       <% if (!student_signed_in? && !tutor_signed_in?)%>
         <li class="nav-item">
-          <%= link_to "About Us",  about_us_path, class: 'nav-link active px-4 navbar-brand' %>
+          <%= link_to "About",  about_us_path, class: 'nav-link active px-4 navbar-brand' %>
         </li>
         <%# <li class="nav-item dropdown"> %>
           <%# <span class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Login</span> %>
@@ -39,7 +39,7 @@
           <%= link_to "Profile",  tutors_path, class: 'nav-link active px-3 navbar-brand' %>
         </li>
         <li class="nav-item">
-          <%= link_to "About Us",  about_us_path, class: 'nav-link active px-3 navbar-brand' %>
+          <%= link_to "About",  about_us_path, class: 'nav-link active px-3 navbar-brand' %>
         </li>
         <% end %>
         <% if student_signed_in? %>
@@ -47,7 +47,7 @@
           <%= link_to "Tutor Search",  students_path, class: 'nav-link active px-3 navbar-brand' %>
         </li>
         <li class="nav-item">
-          <%= link_to "About Us",  about_us_path, class: 'nav-link active px-3 navbar-brand' %>
+          <%= link_to "About",  about_us_path, class: 'nav-link active px-3 navbar-brand' %>
         </li>
         <% end %>
         <% if (student_signed_in? || tutor_signed_in?)%>
