@@ -1,12 +1,12 @@
 <h1>Bookings</h1>
 <% if @bookings.exists? %>
     <% booking_array = [] %>
+    <% all_bookings_formatted = "" %>
     <% @bookings.reverse.each do |booking| %>
-        <% booking_array = get_booking_info(booking) %>
-        <% booking_array.each do |booking_display_record| %>
-        <%= booking_display_record %><br>
-        <% end %><br><hr><br>
+        <% all_bookings_formatted << "#{get_tutor_booking_info(booking)}<br>" %>
+        <% all_bookings_formatted << "<br><hr><br>" %>
     <% end %>
+    <%= sanitize all_bookings_formatted %>
     
 <% else %>
         <p>You have made no bookings yet.</p>

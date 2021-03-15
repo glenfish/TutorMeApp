@@ -4,7 +4,7 @@ module StudentHelper
     end
 
     def get_booking_info(booking)
-
+        booking_info = ""
         subject = Subject.find(booking.subject_id)
         subject_title = subject.title.capitalize
         booked_time = booking.time
@@ -19,14 +19,21 @@ module StudentHelper
         tutor_name = tutor.firstname + ' ' + tutor.lastname
         tutor_email = tutor.email
 
-        booking_info = []
-        booking_info << "Booking ID: #{booking.id}"
-        booking_info << "Date Booked: #{booking.created_at.strftime("%d/%m/%Y")}"
-        booking_info << "Tutor: #{tutor_name}"
-        booking_info << "Subject: #{subject_title}"
-        booking_info << "Time booked: #{booked_time}"
-        booking_info << "Charged: #{booking_amount}"
-        booking_info << "Tutor contact: #{tutor_email}"
+        booking_info = "<div class='card' style='width: 18rem;'><div class='card-body'><h5 class='card-title'>Booking ID: "
+        booking_info << booking.id.to_s
+        booking_info << "</h5><h6 class='card-subtitle mb-2 text-muted'>"
+        booking_info << booking.created_at.strftime('%d/%m/%Y').to_s
+        booking_info << "</h6><p class='card-text'>Student: "
+        booking_info << tutor_name
+        booking_info << "<br>Subject: "
+        booking_info << subject_title
+        booking_info << "<br>Time: "
+        booking_info << booked_time>to_s
+        booking_info << "<br>Paid: "
+        booking_info << booking_amount.to_s
+        booking_info << "<br>Student Contact: "
+        booking_info << tutor_email
+        booking_info << "</p></div></div>"
         return booking_info
     end
 end
