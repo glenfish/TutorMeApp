@@ -28,7 +28,7 @@ class StudentController < ApplicationController
     def search
         # processes search request
         params.permit(:firstname, :lastname, :country, :state, :subject, :available)
-        if params[:firstname] == '' and params[:lastname] == '' and params[:country] == '' and params[:state] == '' and params[:subject] == '' and params[:available] == '0'
+        if params[:firstname] == '' and params[:lastname] == '' and params[:country] == '' and params[:state] == '' and params[:subject] == '' and ( params[:available] == '0' or params[:available] == '1')
             message = "⚠️ #{160.chr("UTF-8")} Please select or enter something to search"
             flash[:alert] = message
             redirect_to request.referer
