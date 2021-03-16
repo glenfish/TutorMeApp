@@ -16,7 +16,15 @@
   <div class="page-container">
     <%= render '/shared/navbar' %>
     <% if alert %>
-      <div id="alert" class="alert"><%= alert %></div>
+<div class="alert" id="alert">
+  <div class="modal-lg">
+    <div class="close-button"><%= alert %>&nbsp;&nbsp;&nbsp;<a href="#" role="button" class="btn btn-light popover-test" title="Popover title" data-content="Popover body content is set in this attribute.">x</a></div>
+  </div>
+</div>
+      
+        
+      
+      
     <% end %>
     <div class="content-container">
     <%= yield %>

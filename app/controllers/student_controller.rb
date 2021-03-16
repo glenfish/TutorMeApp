@@ -29,7 +29,8 @@ class StudentController < ApplicationController
         # processes search request
         params.permit(:firstname, :lastname, :country, :state, :subject, :available)
         if params[:firstname] == '' and params[:lastname] == '' and params[:country] == '' and params[:state] == '' and params[:subject] == '' and params[:available] == '0'
-            flash[:alert] = "Please select or enter something to search"
+            message = "⚠️ #{160.chr("UTF-8")} Please select or enter something to search"
+            flash[:alert] = message
             redirect_to request.referer
         end
         if params[:subject] != ''
@@ -98,14 +99,14 @@ class StudentController < ApplicationController
         if exists and remove
             record = current_student.favourites.find_by_tutor_id(params[:id])
             record.destroy
-            flash[:alert] = "#{tutor_fullname} has been removed from your favourites list"
+            flash[:alert] = "#{tutor_fullname} has been removed from favourites"
         elsif
-            flash[:alert] = "#{tutor_fullname} is already in your favourites list"
+            flash[:alert] = "#{tutor_fullname} is already in favourites"
         end
         
         if !exists
             current_student.favourites.create(tutor_id: params[:id])
-            flash[:alert] = "You have added #{tutor_fullname} to your favourites list!"
+            flash[:alert] = "😍  #{160.chr("UTF-8")}#{160.chr("UTF-8")}#{160.chr("UTF-8")}#{tutor_fullname} was added to favourites "
         end
         redirect_to request.referer
     end

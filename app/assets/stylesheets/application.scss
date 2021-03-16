@@ -90,6 +90,7 @@
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
 	animation-duration: 1.4s;
+    height: 55px;
 }
 
 @keyframes fadein {
@@ -103,6 +104,10 @@
 
 .form-container {
     max-width: 440px;
+}
+
+.close-button {
+    float: right;
 }
 
 
