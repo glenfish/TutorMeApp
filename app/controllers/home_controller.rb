@@ -4,7 +4,7 @@ class HomeController < ApplicationController
     def index
     end
     def restricted
-        # @tutor = Tutor.all
+        # shows student's favourited tutors
         if student_signed_in?
             @favourited = current_student.favourites
             favourited_tutors_array = []

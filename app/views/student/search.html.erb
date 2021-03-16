@@ -17,7 +17,12 @@
             State: <%= tutor.state.upcase %><br>
             Country: <%= tutor.country.upcase %><br><br>
             <%= link_to 'View Profile', student_tutor_profile_path(tutor), class: "btn btn-primary btn" %><br><br>
-            <%= link_to "remove from favourites", {controller: "student", action: "favourite", id: tutor.id, remove: true}, class: "btn btn-sm btn-outline-secondary" %>
+            <% is_favourited(tutor.id) ? exists = true : exists = false %>
+            <% if !exists %>
+                <%= link_to "add to favourites", favourite_path(tutor.id), class: "btn btn-sm btn-outline-success" %> &nbsp;&nbsp;
+            <% else %>
+                <%= link_to "remove from favourites", {controller: "student", action: "favourite", id: tutor.id, remove: true}, class: "btn btn-sm btn-outline-secondary" %> &nbsp;&nbsp;
+            <% end %>
             </div>
         </div><br>
     <% end %>
