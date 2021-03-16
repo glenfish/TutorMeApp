@@ -1,10 +1,12 @@
+<% call_to_action = "Purchase 1 hour of tutoring".upcase %>
 <div class="jumbotron jumbotron-fluid" id="jumbo">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Purchase 1 hour of tutoring</h4>
+        <h4 class="modal-title"><%= call_to_action %></h4>
       </div>
       <div class="modal-body">
+      <img src="https://res.cloudinary.com/glenfish/image/upload/zjwfkqx67md7gsx784mcz8tarb67.png" alt="tick" class='success-tick' style="width:72px; float:left; margin-right: 30px;">
         <p>Tutor name: <%= @tutor_fullname %><br>
 		Subject: <%= @subject_title.capitalize %><br>
 		Price: $60.00<br>
