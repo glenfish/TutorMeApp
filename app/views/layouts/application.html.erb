@@ -17,8 +17,8 @@
     <%= render '/shared/navbar' %>
     <% if alert %>
 <div class="alert" id="alert">
-  <div class="modal-lg">
-    <div class="close-button"><%= alert %>&nbsp;&nbsp;&nbsp;<a href="#" role="button" class="btn btn-light popover-test" title="Popover title" data-content="Popover body content is set in this attribute.">x</a></div>
+  <div class="modal-lg"><span class="alert-message"><%= alert %></span>
+    <div class="close-button">&nbsp;&nbsp;&nbsp;<a href="#" role="button" class="btn btn-light popover-test" title="Popover title" data-content="Popover body content is set in this attribute.">x</a></div>
   </div>
 </div>
       
