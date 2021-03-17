@@ -1,7 +1,8 @@
 <h1><%= @tutor.firstname %> <%= @tutor.lastname %></h1>
 <% if !@exists %>
-    <%= link_to "add to favourites", favourite_path(@tutor.id), class: "btn btn-sm btn-outline-success" %><br><br>
+    <%= link_to "add to favourites", favourite_path(@tutor.id), class: "btn btn-sm btn-outline-success" %> &nbsp;&nbsp;
 <% else %>
+<%= link_to "back", request.referer.present? ? request.referer : default_path, class: "btn btn-sm btn-outline-secondary" %><br><br>
 <br>This tutor is in your favourites
     <%= link_to "remove from favourites", {controller: "student", action: "favourite", id: @tutor.id, remove: true}, class: "btn btn-sm btn-outline-secondary" %> <br>
 <% end %><br>
