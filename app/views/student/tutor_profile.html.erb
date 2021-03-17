@@ -2,7 +2,7 @@
 <% if !@exists %>
     <%= link_to "add to favourites", favourite_path(@tutor.id), class: "btn btn-sm btn-outline-success" %> &nbsp;&nbsp;
 <% else %>
-<%= link_to "remove from favourites", {controller: "student", action: "favourite", id: @tutor.id, remove: true}, class: "btn btn-sm btn-outline-secondary" %> <br>
+<%= link_to "remove from favourites", {controller: "student", action: "favourite", id: @tutor.id, remove: true}, class: "btn btn-sm btn-outline-secondary" %> &nbsp;&nbsp;
 <% end %><%= link_to "back", request.referer.present? ? request.referer : default_path, class: "btn btn-sm btn-outline-secondary" %><br><br><br>
 <% if @tutor_profile %>
     <% if @tutor.profile.photo.url %>
