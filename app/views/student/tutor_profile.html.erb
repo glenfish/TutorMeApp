@@ -2,10 +2,9 @@
 <% if !@exists %>
     <%= link_to "add to favourites", favourite_path(@tutor.id), class: "btn btn-sm btn-outline-success" %> &nbsp;&nbsp;
 <% else %>
-<%= link_to "back", request.referer.present? ? request.referer : default_path, class: "btn btn-sm btn-outline-secondary" %><br><br>
 <br>This tutor is in your favourites
     <%= link_to "remove from favourites", {controller: "student", action: "favourite", id: @tutor.id, remove: true}, class: "btn btn-sm btn-outline-secondary" %> <br>
-<% end %><br>
+<% end %><%= link_to "back", request.referer.present? ? request.referer : default_path, class: "btn btn-sm btn-outline-secondary" %><br><br><br>
 <% if @tutor_profile %>
     <% if @tutor.profile.photo.url %>
         <%= cl_image_tag @tutor.profile.photo.url, class: 'profile_image_main', cloud_name: $cloud_name %>
