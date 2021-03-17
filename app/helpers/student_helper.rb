@@ -23,7 +23,7 @@ module StudentHelper
         booking_info << booking.id.to_s
         booking_info << "</h5><h6 class='card-subtitle mb-2 text-muted'>"
         booking_info << booking.created_at.strftime('%d/%m/%Y').to_s
-        booking_info << "</h6><p class='card-text'>Student: "
+        booking_info << "</h6><p class='card-text'>Tutor: "
         booking_info << tutor_name
         booking_info << "<br>Subject: "
         booking_info << subject_title
@@ -31,7 +31,7 @@ module StudentHelper
         booking_info << booked_time>to_s
         booking_info << "<br>Paid: "
         booking_info << booking_amount.to_s
-        booking_info << "<br>Student Contact: "
+        booking_info << "<br>Tutor Contact: "
         booking_info << tutor_email
         booking_info << "<br><br><a href="
         booking_info << student_tutor_profile_path(booking.tutor_id)
