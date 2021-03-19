@@ -57,9 +57,9 @@ Hours booked is currently hard coded to 1 hour blocks.
 One hour is currently billed at $60 AUD.
 
 ## Forking or Cloning this repo?
-For this app to function with billing, you will need to create a free account with Stripe and get your API keys. You will need to set them up in your credentials file. You will also need to create an appropriate webhook  on your Stripe dashboard that points to your server.  
+For this app to function with billing, an account with Stripe is required. You will need to add your Stripe API information to the credentials file in Rails. In the Stripe dashboard, create an appropriate webhook that points to your server.  
 
-Ensure you select the event type: ```payment_intent.succeeded```
+Select the event type: ```payment_intent.succeeded```
 
 Your webhook URL should be:  
 ```https://yourdomain.com/students/make_booking```
