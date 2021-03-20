@@ -324,4 +324,4 @@ The Ultrahook gem should already be installed from running 'bundle'.
 From the command line in a separate tab or window, run: ```ultrahook stripe 3000```
 (if you are using the default port)
 
-Cloudinary is used to host images. You will need to create an account and add your Cludinary credentials to rails.
+Cloudinary is used to host images. You will need to create an account and add your credentials to rails.
