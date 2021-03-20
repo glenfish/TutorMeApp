@@ -1,4 +1,5 @@
 # TutorMe 
+![](https://i.imgur.com/WRZL1NI.jpg)
 
 ### Requirements:  
 * Ruby v 3.0.0
