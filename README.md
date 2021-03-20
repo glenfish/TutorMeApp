@@ -11,8 +11,13 @@
 * Rails v 6.1.3
 * PostgreSQL
 
+### 3rd Party Services
+* Cloudinary
+* Stripe
 ____
 ## Live app:  
+
+This app is hosted with Heroku:  
 [https://tutorme-app.herokuapp.com](https://tutorme-app.herokuapp.com)
 
 ____
@@ -318,3 +323,5 @@ If you are testing locally, use Ultrahook to forward http post data.
 The Ultrahook gem should already be installed from running 'bundle'.
 From the command line in a separate tab or window, run: ```ultrahook stripe 3000```
 (if you are using the default port)
+
+Cloudinary is used to host images. You will need to create an account and add your Cludinary credentials to rails.
