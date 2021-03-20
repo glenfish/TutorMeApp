@@ -14,6 +14,7 @@
 ### 3rd Party Services
 * Cloudinary
 * Stripe
+
 ____
 ## Live app:  
 
@@ -118,19 +119,19 @@ Tutor, Student & Subject objects used for console tests:
 
 harold = Tutor.first  
 
-	harold.id `# 1`  
+	harold.id # 1  
     
 joe = Student.first  
 
-	joe.id `# 1`  
+	joe.id # 1  
 
 subject = harold.subjects.find(5)  
 
-	subject.id `# 5` 
+	subject.id # 5 
 
-	subject.title `# "diving"`  
+	subject.title # "diving"  
 
-	subject.time `# 52`  
+	subject.time # 52  
 
 
 1. Create a record in *Bookings* model based on the above data:
@@ -162,7 +163,7 @@ harold.bookings
 [#<Booking id: 1, time: 1, tutor_id: 1, student_id: 1, subject_id: 5, created_at: "2021-03-13 02:06:56.329396000 +0000", updated_at: "2021-03-13 02:06:56.329396000 +0000">]
 ```
 
-## *All console tests passed.*  
+All console tests passed.  
 
 2. Create a record in *Payments* based on the Booking data:
 
@@ -214,6 +215,7 @@ Some fields needed to have 'not null' defined on them after they were created, t
 
 
 `rails g migration AddChangeColumnNullTo<Modelname>`  
+
 then in the migration file:  
 `change_column_null(:<modelname>, :field, false)`
 
