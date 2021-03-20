@@ -1,18 +1,15 @@
 # TutorMe 
 ![](https://i.imgur.com/WRZL1NI.jpg)
 
-### Requirements:  
+### Tech Stack:  
+* HTML5
+* CSS3 / SCSS
+* Bootstrap 4.6
+* PostgreSQL
+* Javascript
 * Ruby v 3.0.0
 * Rails v 6.1.3
 * PostgreSQL
-
-### Tech Stack:  
-* HTML
-* CSS / SCSS
-* PostgreSQL
-* Javascript
-* Ruby
-* Rails
 
 ____
 ## Live app:  
@@ -89,6 +86,14 @@ ____
 * Bugfixes
 * App development tracking
 * Functional checklists
+
+Tasks were defined early in the project and set up in columns identifying core functionality (or donuts) and optional/additonal features (known as sprinkles). Items were created as cards in these lists and arranged in order of importance, or build order. Some were given checklists within the task if there were many components or processes, such as creating, testing, associatings, sanitising and integrating the models with the app. These were checked off as they were completed.
+
+Similarly, bugs were added to the buglist as they were encountered, and removed as they were addressed. 
+
+A 'Working On' list was created for jobs that were currently being coded. This ensured that development was focused. Once it was working, it was tested with data in localhost via the Puma rails server.
+
+Ultrahooks was used in the testing of the Stripe web hooks once the checkout was integrated. This required post data to be read from a controller action and the appropraite models updated to reflect the payment, booking, tutor, student, subject, number of hours purchased, and decrement the hours in the subject model for the associated tutor.
 
 *All snapshots of Trello board in 'docs/trello_snapshots' folder*
 ___
@@ -176,11 +181,105 @@ ____
 ___
 ## Schema:
 
+The schema file was generated from multiple migration files using `rails db:migrate`
+
+1. Created subjects model from the command line  
+`rails g model subjects time:integer tutor:references`
+
+2. Added the associations to the model file
+```
+subjects.rb
+has_many :tutors
+has_one :photo
+tutors.rb
+has_many :subjects
+```
+
+Similarly, other models were created:   
+
+Bookings Model  
+`rails g model booking time:integer tutor:references student:references subject:references`
+
+Payments Model  
+`rails g model payment amount:integer booking:references`
+
+The `modelname:references` sets up the foreign key association on the new model with the already existing model *'modelname'*
+
+Some fields needed to have 'not null' defined on them after they were created, to ensure that they have a value and are not blan in the database table. This was done again on the command line and then in the migration file, as follows:
+
+
+`rails g migration AddChangeColumnNullTo<Modelname>`  
+then in the migration file:  
+`change_column_null(:<modelname>, :field, false)`
+
+
+### Example 1:
+
+`rails g migration AddChangeColumnNullToTutors`
+```
+and then in the migration file:
+change_column_null(:tutors, :firstname, false)
+change_column_null(:tutors, :lastname, false)
+change_column_null(:tutors, :address_1, false)
+change_column_null(:tutors, :state, false)
+change_column_null(:tutors, :country, false)
+change_column_null(:tutors, :postcode, false)
+```
+
+### Example 2:
+
+`rails g migration AddChangeColumnNullToStudents`
+
+```
+change_column_null(:students, :firstname, false)
+change_column_null(:students, :lastname, false)
+```
+
+Validations were set up on models using the following syntax in the model class
+```
+validates :email, presence: true  
+validates :firstname, presence: true  
+validates :lastname, presence: true  
+validates :address_1, presence: true  
+validates :postcode, presence: true  
+validates :state, presence: true  
+validates :country, presence: true  
+```
+
+## Associations
+
+The Students model for example has the following association definitions in its model class file: A Student can have many Tutors, through the Favourites table.
+```
+has_many :favourites
+has_many :tutors, through: :favourites
+```
+And a successful payment is a one to one relationship with a booking, which is a through association
+```
+has_one :payment, through: :bookings
+```
+
 ![Schema #1](https://i.imgur.com/u2DtQTH.png)  
 ![Schema #2](https://i.imgur.com/mOZnPgB.png) 
 ![Schema #3](https://i.imgur.com/kz0kS6c.png) 
 
+
 *All schema screenshots are in 'docs/schema' folder*
+
+___
+## Abstraction
+
+The Devise gem and its bcrypt core largely abstract the authentication and authorization processes by providing method calls to handle all the critical functionality required. One example is:
+
+`before_action :authenticate_tutor!`
+
+This runs on all controller actions where it is permitted, and ensures that we can then use:
+
+`tutor_signed_in?`
+
+... to set the tutor object, profile and array of subjects available to all views.
+
+Another example of abstraction is custom methods created in controller helpers to build the booking history. A simple method call to `get_student_booking_info(booking)` returns an html/ruby formatted booking card for display.
+
 ____
 ## Wireframes:  
 [Google Slides Presentation](https://docs.google.com/presentation/d/1NYTVL6BqujK6xx0A7tb3AlOUhXK7OC8ULvy7KSxVTQ4/edit?usp=sharing)
