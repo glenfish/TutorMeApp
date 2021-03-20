@@ -7,11 +7,12 @@ Requirements:
 
 ____
 ## Live app:  
-```https://tutorme-app.herokuapp.com/```
+
+[https://tutorme-app.herokuapp.com/](hhttps://tutorme-app.herokuapp.com/)
 
 ____
 ## Github repo:  
-```https://github.com/glenfish/TutorMeApp```
+[https://github.com/glenfish/TutorMeApp](https://github.com/glenfish/TutorMeApp)
 
 ____
 ## Install:  
