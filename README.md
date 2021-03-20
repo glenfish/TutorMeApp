@@ -7,8 +7,7 @@ Requirements:
 
 ____
 ## Live app:  
-
-[https://tutorme-app.herokuapp.com/](hhttps://tutorme-app.herokuapp.com/)
+[https://tutorme-app.herokuapp.com](hhttps://tutorme-app.herokuapp.com)
 
 ____
 ## Github repo:  
