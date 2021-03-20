@@ -90,7 +90,7 @@ ____
 * App development tracking
 * Functional checklists
 
-All snapshots of Trello board in 'docs/trello_snapshots' folder
+*All snapshots of Trello board in 'docs/trello_snapshots' folder*
 ___
 ## User Stories
 ### The following user stories are implemented in the code 
@@ -98,53 +98,68 @@ ___
 ![User Stories #1](https://i.imgur.com/PwEN3eQ.png)
 
 
-All images are in 'docs/user_stories' folder
+*All images are in 'docs/user_stories' folder*
 ___
 ## Testing
 
-console tests:
-harold = Tutor.first
-	harold.id # 1
-joe = Student.first
-	joe.id # 1
-subject = harold.subjects.find(5)
-	subject.id # 5
-	subject.title # "diving"
-	subject.time # 52
+Rails console was used for testing all model behaviour. Below are two such tests conducted on the Students / Tutors / Subjects / Bookings model associations and the Bookings / Payments model associations.
+
+Tutor, Student & Subject objects used for console tests:  
+
+harold = Tutor.first  
+
+	harold.id `# 1`  
+    
+joe = Student.first  
+
+	joe.id `# 1`  
+
+subject = harold.subjects.find(5)  
+
+	subject.id `# 5` 
+
+	subject.title `# "diving"`  
+
+	subject.time `# 52`  
+
 
 1. Create a record in *Bookings* model based on the above data:
 booking_2 = joe.bookings.create(tutor_id: harold.id, time: 1,subject_id: subject.id)
 test:  
+```
+booking_2.tutor.firstname # "Harold"  
 
-booking_2.tutor.firstname `# "Harold"`
+booking_2.student.firstname # "Joe"  
 
-booking_2.student.firstname `# "Joe"`
+booking_2.subject.title # "diving"
 
-booking_2.subject.title `# "diving"`
+booking_2.subject.time # 52
 
-booking_2.subject.time `# 52`
+booking_2.time # 1
 
-booking_2.time `# 1`
+booking_2.id # 1
+```
 
-booking_2.id `# 1`
+joe.bookings 
 
-
-joe.bookings  
-` [#<Booking id: 1, time: 1, tutor_id: 1, student_id: 1, subject_id: 5, created_at: "2021-03-13 02:06:56.329396000 +0000", updated_at: "2021-03-13 02:06:56.329396000 +0000">, #<Booking id: nil, time: 1, tutor_id: 1, student_id: 1, subject_id: 5, created_at: nil, updated_at: nil>]`
+```
+[#<Booking id: 1, time: 1, tutor_id: 1, student_id: 1, subject_id: 5, created_at: "2021-03-13 02:06:56.329396000 +0000", updated_at: "2021-03-13 02:06:56.329396000 +0000">, #<Booking id: nil, time: 1, tutor_id: 1, student_id: 1, subject_id: 5, created_at: nil, updated_at: nil>]
+```
 
 harold.bookings  
-`
+
+```
 [#<Booking id: 1, time: 1, tutor_id: 1, student_id: 1, subject_id: 5, created_at: "2021-03-13 02:06:56.329396000 +0000", updated_at: "2021-03-13 02:06:56.329396000 +0000">]
-`
+```
 
 ## *All console tests passed.*  
 
 2. Create a record in *Payments* based on the Booking data:
 
 payment_2 = Payment.create(amount: 40, booking_id: booking_2.id)
-
+```
 payment_2.amount `# 40`
-
+```
 
 The Bookings and Payments models are set up and working as expected, tested via the Rails console.
 
@@ -153,7 +168,7 @@ The Bookings and Payments models are set up and working as expected, tested via 
 ![Testing #3](https://i.imgur.com/AEuE76P.png)  
 ![Testing #4](https://i.imgur.com/4vVZHUJ.png)  
 
-All testing screenshots are in 'docs/testing' folder
+*All testing screenshots are in 'docs/testing' folder*
 ____
 ## Entity Relationship Diagram (ERD):  
 ![https://i.imgur.com/LNgGpUJ.png](https://i.imgur.com/LNgGpUJ.png)
@@ -165,7 +180,7 @@ ___
 ![Schema #2](https://i.imgur.com/mOZnPgB.png) 
 ![Schema #3](https://i.imgur.com/kz0kS6c.png) 
 
-All schema screenshots are in 'docs/schema' folder
+*All schema screenshots are in 'docs/schema' folder*
 ____
 ## Wireframes:  
 [Google Slides Presentation](https://docs.google.com/presentation/d/1NYTVL6BqujK6xx0A7tb3AlOUhXK7OC8ULvy7KSxVTQ4/edit?usp=sharing)
@@ -181,14 +196,14 @@ ____
 ![STUDENT - Order Success](https://i.imgur.com/SzrpOTj.png)  
 ![STUDENT - Bookings](https://i.imgur.com/03wAFH5.png)  
 
-All wireframes are in 'docs/wireframes' folder
+*All wireframes are in 'docs/wireframes' folder*
 ____
 ## Sitemap & Rails Routes:  
 ![Sitemap](https://i.imgur.com/e5GCsQK.png)  
 
 ![Routes](https://i.imgur.com/YuvJiuB.png)
 
-Images are in 'docs/sitemap' folder
+*Images are in 'docs/sitemap' folder*
 ____
 ## Forking or Cloning this repo?
 For this app to function with billing, an account with Stripe is required. You will need to add your Stripe API information to the credentials file in Rails. In the Stripe dashboard, create an appropriate webhook that points to your server.  
