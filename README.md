@@ -157,6 +157,14 @@ ____
 ## Entity Relationship Diagram (ERD):  
 ![https://i.imgur.com/LNgGpUJ.png](https://i.imgur.com/LNgGpUJ.png)
 
+___
+## Schema:
+
+![Schema #1](https://i.imgur.com/u2DtQTH.png)  
+![Schema #2](https://i.imgur.com/mOZnPgB.png) 
+![Schema #3](https://i.imgur.com/kz0kS6c.png) 
+
+All schema screenshots are in 'docs/schema' folder
 ____
 ## Wireframes:  
 [Google Slides Presentation](https://docs.google.com/presentation/d/1NYTVL6BqujK6xx0A7tb3AlOUhXK7OC8ULvy7KSxVTQ4/edit?usp=sharing)
